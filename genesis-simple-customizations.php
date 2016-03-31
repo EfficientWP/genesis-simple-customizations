@@ -1,15 +1,15 @@
 <?php
 /*****
 Plugin Name: Easy Genesis
-Plugin URI: http://efficientwp.com/plugins/genesis-simple-customizations
+Plugin URI: http://efficientwp.com/plugins/easy-genesis
 Description: Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
-Version: 1.3
+Version: 1.4
 Author: Doug Yuen
 Author URI: http://efficientwp.com
 License: GPLv2
 *****/
 
-$egwp_version = '1.3';
+$egwp_version = '1.4';
 
 /***** BASIC SECURITY *****/
 
@@ -107,14 +107,10 @@ function egwp_deactivation () {
 
 function egwp_add_menus() {
 	$handle = add_menu_page( 'Easy Genesis', 'Easy Genesis', 'edit_themes', 'egwp_easy_genesis', 'egwp_main_page_callback', 'dashicons-admin-generic', '58.9950000000121' );
-	
 	/***** MAYBE ADD A TOOLBAR BUTTON, COULDNT GET IT TO SHOW ON THE FRONT END - ONLY SHOWS ON ADMIN PAGES - CONFLICT W/ MULTISITE? *****/
-//	add_action( 'wp_before_admin_bar_render', 'egwp_toolbar_button' );
-	
+	//add_action( 'wp_before_admin_bar_render', 'egwp_toolbar_button' );
 	add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'egwp_plugin_action_links' );
 }
-
-
 
 function egwp_plugin_action_links( $links ) {
    $links[] = '<a href="'. admin_url() . '?page=egwp_easy_genesis' .'">Settings</a>';
@@ -150,7 +146,7 @@ function egwp_register_settings() {
 	
 	/***** MAKE SURE OUR ARRAY EXISTS *****/
 	
-	if( !get_option( 'egwp_option_array' ) ) { 
+	if ( !get_option( 'egwp_option_array' ) ) { 
 
 		add_option( 'egwp_option_array' );
 	}
@@ -159,45 +155,25 @@ function egwp_register_settings() {
 	
 	//$array egwp_options_array = [ str 'setting', str 'friendlyText', str/fn 'fn_callBack', str 'settingsArea' ]
 	
-	$egwp_options_array = array
-	(	
-	
+	$egwp_options_array = array(	
 		/***** MAIN TAB *****/
 		array( 'remove_edit_link', 'Remove "(Edit)" Link from Frontend', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		
 		array( 'featured_image_pages', 'Display Featured Image on Pages', 'egwp_radio_featured_image_callback', 'egwp_basic_setting_section' ),
-		
 		array( 'featured_image_posts', 'Display Featured Image on Posts', 'egwp_radio_featured_image_callback', 'egwp_basic_setting_section' ),
-		
 		array( 'custom_search_box_text', 'Custom Search Box Text', 'egwp_text_box_callback', 'egwp_basic_setting_section', 'Search this website ...' ),	
-		
 		array( 'custom_search_button_text', 'Custom Search Button Text', 'egwp_text_box_callback', 'egwp_basic_setting_section', 'Search' ),
-		
 		array( 'custom_read_more_text', 'Custom "Read More" Text', 'egwp_text_box_callback', 'egwp_basic_setting_section', 'Read more...' ),
-		
 		array( 'custom_after_post_text', 'Custom After Post Code (Shortcodes Allowed)', 'egwp_text_box_callback', 'egwp_basic_setting_section' ),
-		
 		array( 'remove_post_info', 'Remove Post Info', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		
 		array( 'remove_post_meta', 'Remove Post Meta', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),	
-		
 		array( 'remove_footer', 'Remove Footer', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),		
-				
 		array( 'remove_subnav_from_top_of_header', 'Remove Subnav from Top of Header', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		
 		array( 'add_subnav_to_bottom_of_header', 'Add Subnav to Bottom of Header', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-				
 		array( 'remove_favicon', 'Remove Genesis Favicon', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),	
-
 		array( 'custom_favicon_url', 'Custom Favicon (URL)', 'egwp_media_library_callback', 'egwp_basic_setting_section' ),	
-		
-		array( 'custom_gravatar_url', 'Custom Default Gravatar (URL)', 'egwp_media_library_callback', 'egwp_basic_setting_section' ),	
-							
+		array( 'custom_gravatar_url', 'Custom Default Gravatar (URL)', 'egwp_media_library_callback', 'egwp_basic_setting_section' ),				
 		array( 'custom_google_fonts_text', 'Custom Google Fonts URL <br> (e.g. http://fonts.googleapis.com/css?family=Lato%3A400)', 'egwp_text_box_callback', 'egwp_basic_setting_section' ),	
-		
 		array( 'add_featured_image_size_array', 'Add Custom Image Size', 'egwp_custom_image_sizes_callback', 'egwp_basic_setting_section' ),
-		
-		
 	);
 	
 	/***** FILTER SO OTHER EXTENSIONS CAN HOOK IN SETTINGS *****/
@@ -209,18 +185,15 @@ function egwp_register_settings() {
 		add_settings_field( $id, $title, $callback, $page, $section, $args );
 	*****/
 	
-	foreach( $egwp_options_array as $option ) {
+	foreach ( $egwp_options_array as $option ) {
 		$setting_name = $option[0];
 		$friendly_text = $option[1];
 		$callback_function = $option[2];
 		$setting_heading = $option[3];
-		
 		add_settings_field( "egwp_option_array[$setting_name]", $friendly_text, $callback_function, 'egwp_main_settings_page', $setting_heading, $option);
-		
 	}	
 	
 	register_setting( 'egwp_main_settings', 'egwp_option_array' );
-	
 }
 
 /***** SET UP INDIVIDUAL FIELDS -- BY TYPE *****/
@@ -229,20 +202,16 @@ function egwp_register_settings() {
 
 function egwp_checkbox_callback( $args ) {
 	$option_name = $args[0];
-
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$options[ $option_name ] = 0;
-		
 	}
 
 	$html = "<div class='egwp_checkbox'><input type='checkbox' id='egwp_option_array[$option_name]' name='egwp_option_array[$option_name]' value='1' " . checked( 1, $options[ $option_name ], false ) . '/>'; 
 	$html .= "<label for='egwp_option_array[$option_name]'></label></div>"; 
-	   
 	echo $html;
 }
 
@@ -250,41 +219,30 @@ function egwp_checkbox_callback( $args ) {
 
 function egwp_text_box_callback( $args ) {
 	$option_name = $args[0];
-	
 	$placeholder = empty( $args[4] ) ? '' : $args[4];
-	
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$value = $options[ $option_name ] = '';
-		
-	}else {
+	} else {
 		$value = esc_textarea( $options[ $option_name ] );
 	}
-
 	$html = "<input type='text' class='egwp_text' id='egwp_option_array[$option_name]' name='egwp_option_array[$option_name]' value='$value' placeholder='$placeholder' />"; 
-	
 	//$html .= "<label for='egwp_option_array[$args[0]]'> " . $args[1] . '</label>'; 
-   
 	echo $html;
 }
 
 function egwp_editor_callback( $args ) {
-
 	$option_name = $args[0];
-
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$value = $options[ $option_name ] = '';
-		
-	}else {
+	} else {
 		$value = esc_textarea( $options[ $option_name ] );
 	}
 		
@@ -299,68 +257,51 @@ function egwp_editor_callback( $args ) {
 	wp_editor( $value, $editor_id, $settings );
 }
 
-
 /***** RENDER NUMBER INPUT OPTIONS *****/
 
 function egwp_number_callback( $args ) {
 	$option_name = $args[0];
-	
 	$placeholder = empty( $args[4] ) ? '' : $args[4];
-	
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$value = $options[ $option_name ] = $placeholder;
-		
-	}else {
+	} else {
 		$value = intval( $options[ $option_name ] );
 	}
 	
 	$value == 0 ? $value = '' : '';
 
 	$html = "<input type='number' class='egwp_number' id='egwp_option_array[$option_name]' name='egwp_option_array[$option_name]' value='$value' placeholder='$placeholder' min='1' max='10000' />px"; 
-	
 	//$html .= "<label for='egwp_option_array[$args[0]]'> " . $args[1] . '</label>'; 
-   
 	echo $html;
 }
 
 /***** RENDER MEDIA UPLOAD CALLBACK (WP MEDIA LIBRARY) *****/
 
 function egwp_media_library_callback( $args ) {
-
 	$option_name = $args[0];
-	
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$value = $options[ $option_name ] = '';
-		
-	}else {
-	
+	} else {
 		$value = $options[ $option_name ];
-		
 	}
 	
 	$html = "<input type='text' class='egwp_text' id='egwp_option_array[$option_name]'  name='egwp_option_array[$option_name]' value='$value'/>";
-
 	$html .= "<input class='egwp-upload-button button' type='button' value='Upload Image' />";
-
 	echo $html;
 }
 
 /***** RENDER MULTISELECTS (OF GENESIS HOOKS) *****/
 
 function egwp_multiselect_callback ( $args ) {
-
 	$option_name = $args[0];
-	
 	$options = get_option( 'egwp_option_array' );
 	
 	$egwp_basic_genesis_hooks = array ( 
@@ -376,25 +317,20 @@ function egwp_multiselect_callback ( $args ) {
 	
 	if ( isset ( $options[ $option_name ] ) ) {
 		$selected_options = $options[ $option_name ];	
-	}else {
+	} else {
 		$selected_options = array();
 	}
 	
-	$size = count ( $egwp_basic_genesis_hooks );
-	
+	$size = count( $egwp_basic_genesis_hooks );
 	$html = "<select class='egwp_select' name='egwp_option_array[$option_name][]' id='egwp_option_array[$option_name]' multiple='multiple' size='$size'>";
 			
 	foreach ( $egwp_basic_genesis_hooks as $hook => $text ) { 
-	
 		$selected = in_array( $hook, $selected_options ) ? 'selected' : '';
-	
 		$html .= "<option value='$hook' $selected>$text</option>";
 	}					
 
 	$html .= '</select>';
-	
 	$html .= "<br><label for='egwp_option_array[$option_name][]'><i>Hold control key to select more than one.</i></label>";
-	
 	echo $html;
 }
 
@@ -403,15 +339,12 @@ function egwp_multiselect_callback ( $args ) {
 function egwp_radio_layout_callback( $args ) {
 
 	$option_name = $args[0];
-
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$options[ $option_name ] = 'default';
-		
 	}
 	
 	$theme_root = get_theme_root();
@@ -430,38 +363,29 @@ function egwp_radio_layout_callback( $args ) {
 	
 	$html = '<fieldset class="genesis-layout-selector">';
 	
-	forEach ( $layouts as $layout => $img ) {
-	
+	foreach ( $layouts as $layout => $img ) {
 		$checked = $options[ $option_name ] == $layout ? 'checked' : '';
-		if ($checked == 'checked' ) {
+		if ( $checked == 'checked' ) {
 			$html .= "<label class='egwp-layout-label-selected egwp-layout-label'><img src='$img'></label>";
 		} else {
 			$html .= "<label class='egwp-layout-label'><img src='$img'></label>";
 		}
-		
-									
 		$html .= "<input class='egwp_radio' type='radio' name='egwp_option_array[$option_name]' id='egwp_option_array[$option_name]' value='$layout' $checked>";
 	}
-	
 	$html .= '</fieldset>';
-	   
 	echo $html;
 }
 
 /***** RENDER RADIO OPTIONS (OF FEATURED IMAGE OPTIONS) *****/
 
 function egwp_radio_featured_image_callback( $args ) {
-
 	$option_name = $args[0];
-
 	$options = get_option( 'egwp_option_array' );
 	
 	/***** SET TO DEFAULT IF THIS OPTION HAS NEVER BEEN SET *****/
 	
 	if ( !isset ( $options[ $option_name ] ) ) {
-	
 		$options[ $option_name ] = '';
-		
 	}
 	
 	$theme_root = get_theme_root();
@@ -481,21 +405,19 @@ function egwp_radio_featured_image_callback( $args ) {
 	
 	$html = '<fieldset class="genesis-layout-selector">';
 	
-	forEach ( $layouts as $layout => $img ) {
+	foreach ( $layouts as $layout => $img ) {
 	
 		$checked = $options[ $option_name ] == $layout ? 'checked' : '';
-		if ($checked == 'checked' ) {
+		if ( $checked == 'checked' ) {
 			$html .= "<label class='egwp-layout-label-selected egwp-layout-label egwp-layout-label-big'><img src='$img'></label>";
 		} else {
 			$html .= "<label class='egwp-layout-label egwp-layout-label-big'><img src='$img'></label>";
 		}
-		
-									
+								
 		$html .= "<input class='egwp_radio' type='radio' name='egwp_option_array[$option_name]' id='egwp_option_array[$option_name]' value='$layout' $checked>";
 	}
 	
 	$html .= '</fieldset>';
-	   
 	echo $html;
 }
 
@@ -507,30 +429,21 @@ function egwp_custom_image_sizes_callback( $args ) {
 	
 	if ( isset ( $options[ $option_name ] ) ) {
 		$selected_options = $options[ $option_name ];	
-	}else {
+	} else {
 		$selected_options = array();
 	}
 
 	$html = "<input name='egwp_add_image_width' type='number' min='1' max='10000' id='egwp_add_image_width' placeholder='Width'/>px X ";
 	$html .= "<input name='egwp_add_image_height' type='number' min='1' max='10000' id='egwp_add_image_height' placeholder='Height'/>px";
-	
 	$html .= "<input name='egwp_add_image_type' type='button' id='egwp_add_image_type' class='button-primary' value='Add' />";
-	
 	$html .= "<br><br><div id='egwp_custom_image_sizes'></div>";
-	
-	
 	$html .= "<br><select name='egwp_option_array[$option_name][]' id='egwp_option_array[$option_name]' multiple='multiple' hidden readonly'>";
 		
 	foreach ( $selected_options as $option ) { 
-	
 		$html .= "<option value='$option' selected>$option</option>";
 	}					
 
 	$html .= '</select>';
-	
-	
-	
-	
 	echo $html;
 }
 
@@ -543,8 +456,6 @@ function egwp_section_callback( $args ) {
 /***** CREATE MAIN SETTING PAGE *****/
 
 function egwp_main_page_callback() {
-
-
 	wp_enqueue_style( 'egwp_admin_stylesheet' );
 	wp_enqueue_script( 'egwp_admin_js' );
 	wp_enqueue_script('jquery');
@@ -552,17 +463,16 @@ function egwp_main_page_callback() {
 	wp_enqueue_script('thickbox');
 
 	$current_tab = get_user_option( 'egwp_current_tab', get_current_user_id() );
-	/***** SEND CURRENT TAB AND AJAX URL DATA TO JS *****/
-	$js_data = array(	
 
+	/***** SEND CURRENT TAB AND AJAX URL DATA TO JS *****/
+
+	$js_data = array(	
 		'ajax_url'  => admin_url('admin-ajax.php'),	
 		'current_tab' => empty( $current_tab ) ? '' : $current_tab,
 		'user_id' => get_current_user_id(),
-		
 	);
 
 	wp_localize_script( 'egwp_admin_js', 'egwp_data', $js_data );
-
 	?>
 	<div id='egwp_main_page'>
 		<h1>Easy Genesis</h1>
@@ -577,7 +487,8 @@ function egwp_main_page_callback() {
 				<a class='nav-tab' id='egwp_import_export_setting_section_nav' href='#'>Import/Export</a>
 			</h2>
 			
-			<!-- IMPORT/EXPORT SETTINGS 'PAGE' --->
+			<!-- IMPORT/EXPORT SETTINGS 'PAGE' -->
+
 			<h2>Import / Export Data</h2>
 			<input type='hidden' id='egwp_import_export_setting_section'>
 			<table class='form-table' id='egwp_import_export_setting_table'>
@@ -586,7 +497,6 @@ function egwp_main_page_callback() {
 						<form method='post'>
 							<input name='egwp_export' type='submit' id='egwp_export' class='button-secondary' value='<?php _e('Export') ?>' />
 							<?php wp_nonce_field( 'egwp_export', 'egwp_nonce' ); ?>
-
 						</form>
 					</td>
 				</tr>
@@ -603,7 +513,7 @@ function egwp_main_page_callback() {
 				</tr>
 			</table>
 			
-			<!-- ADDONS'PAGE' --->
+			<!-- ADDONS 'PAGE' -->
 			<h2>Add-ons</h2>
 			<input type='hidden' id='egwp_addons_section'>
 			<table>
@@ -611,8 +521,8 @@ function egwp_main_page_callback() {
 			</table>
 		
 			<?php
-			settings_fields( 'egwp_main_settings' );
-			do_settings_sections( 'egwp_main_settings_page' );
+				settings_fields( 'egwp_main_settings' );
+				do_settings_sections( 'egwp_main_settings_page' );
 			?>
 						
 			<h2 id='egwp_footer_shortcodes'>Available footer shortcodes: 
@@ -629,9 +539,7 @@ function egwp_main_page_callback() {
 			<input name='submit' type='submit' id='submit_bottom' class='button-primary' value='<?php _e('Save Changes') ?>' />
 		</form>
    </div>
-<?php
-
-}
+<?php }
 
 /***** EXPORT SETTINGS FUNCTION *****/
 
@@ -718,10 +626,8 @@ function egwp_genesis_init () {
 		add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
 	}
 	
-	
 	if ( !empty( $options[ 'featured_image_posts' ] ) ) {
 		$setting = $options[ 'featured_image_posts' ];
-		
 		switch ( $setting ) { 
 			case 'top':
 				add_action( 'genesis_before_content_sidebar_wrap', 'egwp_display_featured_image_post' );
@@ -746,7 +652,6 @@ function egwp_genesis_init () {
 	
 	if ( !empty( $options[ 'featured_image_pages' ] ) ) {
 		$setting = $options[ 'featured_image_pages' ];
-		
 		switch ( $setting ) { 
 			case 'top':
 				add_action( 'genesis_before_content_sidebar_wrap', 'egwp_display_featured_image_page' );
@@ -768,7 +673,6 @@ function egwp_genesis_init () {
 				break;	
 		}		
 	}
-
 	if ( !empty( $options[ 'custom_search_box_text' ] ) ) {
 		add_filter( 'genesis_search_text', 'egwp_custom_search_box', 20 );
 	}
@@ -782,7 +686,6 @@ function egwp_genesis_init () {
 		add_filter( 'the_content_more_link', 'egwp_custom_read_more_text', 20 );
 		add_filter( 'get_the_content_more_link', 'egwp_custom_read_more_text', 20 );
 	}
-
 	if ( !empty( $options[ 'custom_after_post_text' ] ) ) {
 		add_action( 'genesis_after_entry_content', 'egwp_custom_after_post', 20 );
 		add_action( 'genesis_after_post_content', 'egwp_custom_after_post', 20 );
@@ -793,12 +696,13 @@ function egwp_genesis_init () {
 	if ( !empty( $options[ 'custom_entry_meta_below' ] ) ) {
 		add_filter( 'genesis_post_meta', 'egwp_post_meta_filter', 20 );
 	}
+
 	/***** APPLY CUSTOM FOOTER TO BOTH GENESIS FOOTER AND CREDITS TEXT / THEMES VARY AS TO WHICH THEY USE *****/
+
 	if ( !empty( $options[ 'custom_footer_output' ] ) ) {
 		add_filter( 'genesis_footer_creds_text', 'egwp_footer_output_filter', 20 );
 		add_filter( 'genesis_footer_output', 'egwp_footer_output_filter', 20 );
 	}
-	
 	if ( !empty( $options[ 'custom_comments_area_text' ] ) OR !empty( $options[ 'comment_title_wrap' ] ) AND function_exists ( 'egwp_comments_title_filter' ) ) {
 		add_filter( 'genesis_title_comments', 'egwp_comments_title_filter', 20 );
 	}
@@ -827,9 +731,7 @@ function egwp_genesis_init () {
 		add_filter( 'genesis_comment_awaiting_moderation', 'egwp_custom_comment_waiting_mod_text' );
 	}
 	if ( !empty( $options[ 'add_featured_image_size_array' ] ) ) {
-	
 		egwp_add_custom_image_sizes( $options[ 'add_featured_image_size_array' ] );
-
 	}
 	if ( !empty( $options[ 'custom_favicon_url' ] ) ) {
 		add_filter( 'genesis_pre_load_favicon', 'egwp_custom_favicon' );
@@ -841,65 +743,50 @@ function egwp_genesis_init () {
 	if ( function_exists ( 'egwp_breadcrumb_args' ) ) {
 		add_filter( 'genesis_breadcrumb_args', 'egwp_breadcrumb_args' );
 	}
-		
 	if ( !empty( $options[ 'remove_header'] ) ) {
 		remove_action('genesis_header','genesis_do_header');
 	}
-	
 	if ( !empty( $options[ 'remove_primary_nav'] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_nav' );
 	}
-	
 	if ( !empty( $options[ 'remove_secondary_nav'] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 	}
-	
 	if ( !empty( $options[ 'custom_back_to_top_text'] ) AND function_exists ( 'egwp_back_to_top_filter' ) ) {
 		add_filter( 'genesis_footer_backtotop_text', 'egwp_back_to_top_filter' );
 	}
-	
 	if ( !empty( $options[ 'display_content_on_blog'] )AND function_exists ( 'egwp_add_content_to_blog' ) ) {
 		add_action ( 'genesis_loop', 'egwp_add_content_to_blog', 1 );
 	}
-	
 	if ( !empty( $options[ 'custom_nav_html_before'] ) AND function_exists ( 'egwp_add_nav_html_before' ) ) {
 		add_filter( 'genesis_nav_items', 'egwp_add_nav_html_before' );
 		add_filter( 'wp_nav_menu_items', 'egwp_add_nav_html_before' );
 	}
-	
 	if ( !empty( $options[ 'custom_nav_html_after'] ) AND function_exists ( 'egwp_add_nav_html_after' ) ) {
 		add_filter( 'genesis_nav_items', 'egwp_add_nav_html_after' );
 		add_filter( 'wp_nav_menu_items', 'egwp_add_nav_html_after' );
 	}
-	
 	if ( !empty( $options[ 'add_post_navigation'] ) AND function_exists ( 'egwp_prev_next_post_nav' ) ) {
 		add_action( 'genesis_entry_footer', 'egwp_prev_next_post_nav' );
-	}
-			
+	}	
 	if ( !empty( $options[ 'custom_breadcrumb_location'] ) ) {
 		remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
-		forEach ( $options[ 'custom_breadcrumb_location'] as $hook ) {
+		foreach ( $options[ 'custom_breadcrumb_location'] as $hook ) {
 			add_action( $hook, 'genesis_do_breadcrumbs' );
 		}
-		
 	}
-
 	if ( !empty( $options[ 'custom_primary_nav_location'] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_nav' );
-		forEach ( $options[ 'custom_primary_nav_location'] as $hook ) {
+		foreach ( $options[ 'custom_primary_nav_location'] as $hook ) {
 			add_action( $hook, 'genesis_do_nav' );
 		}
-		
-	}	
-
+	}
 	if ( !empty( $options[ 'custom_secondary_nav_location'] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_subnav' );
-		forEach ( $options[ 'custom_secondary_nav_location'] as $hook ) {
+		foreach ( $options[ 'custom_secondary_nav_location'] as $hook ) {
 			add_action( $hook, 'genesis_do_subnav' );
 		}
-		
 	}
-	
 	if ( !empty( $options[ 'custom_next_archive_label' ] ) AND function_exists ( 'egwp_archive_next_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
@@ -912,14 +799,12 @@ function egwp_genesis_init () {
 		update_option ( 'genesis-settings',  $genesis_options);
 		add_filter( 'genesis_prev_link_text', 'egwp_archive_prev_text' );
 	}			
-
 }
 
 
 /***** EXECUTE CUSTOMIZATIONS ON GENESIS_BEFORE_POST AND GENESIS_BEFORE_ENTRY OR GENESIS_BEFORE HOOK - DEPENDING ON THEME *****/
 
 function egwp_title_toggle () {
-	
 	$post_title_setting = get_post_meta( get_the_ID(), 'egwp_title_toggle', true );
 	$options = get_option( 'egwp_option_array' );
 	
@@ -950,7 +835,6 @@ function egwp_genesis_meta () {
 /***** EXECUTE CUSTOMIZATIONS ON WP_HEAD HOOK *****/
 
 function egwp_wp_head() {
-
 	$options = get_option( 'egwp_option_array' );
 	if ( !empty( $options[ 'remove_subnav_from_top_of_header' ] ) ) {
 		remove_action( 'genesis_before', 'genesis_do_subnav' );
@@ -961,18 +845,14 @@ function egwp_wp_head() {
 	if ( !empty( $options[ 'remove_favicon' ] ) ) {
 		remove_action( 'wp_head', 'genesis_load_favicon' );
 	}
-
 }
-
 
 /***** FEATURED IMAGE FUNCTIONS *****/
 
 function egwp_display_featured_image_page() {
-
 	global $post;
 	$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
-	
-	
+
 	if ( is_page ( $post ) AND !empty ( $featured_image_array ) ) {
 	
 		$options = get_option( 'egwp_option_array' );
@@ -1009,24 +889,18 @@ function egwp_display_featured_image_page() {
 		}
 		
 		echo '<div class="egwp_featured_image" style="position:relative;">';
-		
 		if ( !empty ( $heading ) AND ($mode == 'above') ) {
 			echo "<h1 class='featured-image' style='text-align: center'>$heading</h1>";
 		}
-		
-			echo "<img src='$img_url'>";
-			if ( !empty ( $heading ) AND ($mode == 'center') ) {
-				echo "<h1 class='featured-image' style='left: 0; position:absolute; text-align:center; top: 45%; left: 0; width: 100%; color: white;'>$heading</h1>";
-			}
-		
+		echo "<img src='$img_url'>";
+		if ( !empty ( $heading ) AND ($mode == 'center') ) {
+			echo "<h1 class='featured-image' style='left: 0; position:absolute; text-align:center; top: 45%; left: 0; width: 100%; color: white;'>$heading</h1>";
+		}
 		echo '</div>';
-	
 	}
-	
 }
 
 function egwp_display_featured_image_post() {
-
 	global $post;
 	$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 	
@@ -1066,20 +940,15 @@ function egwp_display_featured_image_post() {
 		}
 		
 		echo '<div class="egwp_featured_image" style="position:relative;">';
-		
 		if ( !empty ( $heading ) AND ($mode == 'above') ) {
 			echo "<h1 class='featured-image' style='text-align: center'>$heading</h1>";
 		}
-		
-			echo "<img src='$img_url'>";
-			if ( !empty ( $heading ) AND ($mode == 'center') ) {
-				echo "<h1 class='featured-image' style='left: 0; position:absolute; text-align:center; top: 45%; left: 0; width: 100%; color: white;'>$heading</h1>";
-			}
-		
+		echo "<img src='$img_url'>";
+		if ( !empty ( $heading ) AND ($mode == 'center') ) {
+			echo "<h1 class='featured-image' style='left: 0; position:absolute; text-align:center; top: 45%; left: 0; width: 100%; color: white;'>$heading</h1>";
+		}
 		echo '</div>';
-	
 	}
-	
 }
 
 /***** CUSTOM TEXT FUNCTIONS *****/
@@ -1090,9 +959,7 @@ function egwp_custom_read_more_text( $text ) {
 		$text = $options[ 'custom_read_more_text' ];
 		return "<a class='more-link' href='" . get_permalink() . "'>" . esc_attr( $text ) . '</a>';
 	}
-	
 }
-
 
 function egwp_custom_search_box( $text ) {
 	$options = get_option( 'egwp_option_array' );
@@ -1100,7 +967,6 @@ function egwp_custom_search_box( $text ) {
 		$search_box_text = $options[ 'custom_search_box_text' ];
 		return esc_attr( $search_box_text );
 	}
-	
 }
 
 function egwp_custom_search_button( $text ) {
@@ -1109,7 +975,6 @@ function egwp_custom_search_button( $text ) {
 		$search_button_text = $options[ 'custom_search_button_text' ];
 		return esc_attr( $search_button_text );
 	}
-	
 }
 
 function egwp_custom_google_fonts( $text ) {
@@ -1118,7 +983,6 @@ function egwp_custom_google_fonts( $text ) {
 		$google_fonts_text = $options[ 'custom_google_fonts_text' ];
 		wp_enqueue_style( 'google-font', esc_url( $google_fonts_text ), array(), PARENT_THEME_VERSION );
 	}
-	
 }
 
 function egwp_custom_after_post( $text ) {
@@ -1128,7 +992,6 @@ function egwp_custom_after_post( $text ) {
 			$after_post_text = $options[ 'custom_after_post_text' ];
 			echo '<div>' . do_shortcode( $after_post_text ) . '</div>';
 		}
-		
 	}
 }
 
@@ -1138,6 +1001,7 @@ function egwp_post_info_filter( $text ) {
 	$options = get_option( 'egwp_option_array' );
 	return $options[ 'custom_entry_meta_above' ];
 }
+
 function egwp_post_meta_filter( $text ) {
 	$options = get_option( 'egwp_option_array' );
 	return $options[ 'custom_entry_meta_below' ];
@@ -1153,6 +1017,7 @@ function egwp_add_genesis_author_boxes( $text ) {
 	add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
 	add_filter( 'get_the_author_genesis_author_box_archive', '__return_true' );
 }
+
 function egwp_custom_avatar_size() {
 	$options = get_option( 'egwp_option_array' );
     return intval( $options[ 'custom_avatar_size' ] );
@@ -1162,14 +1027,11 @@ function egwp_custom_avatar_size() {
 /***** CUSTOM META BOX SAVE FUNCTION, FOR PER PAGE / POST TITLE OVERRIDE SETTING *****/
 
 function egwp_title_toggle_post_metabox_save ( $post_id ){
-
 	if ( ! current_user_can( 'edit_post', $post_id ) ) {
 		return;
 	}
 	$value = empty ($_POST[ 'egwp_title_toggle_post' ]) ? 'default' : $_POST[ 'egwp_title_toggle_post' ];
-
 	update_post_meta( $post_id, 'egwp_title_toggle', $value );
-		
 }
 
 /***** FILTER FOR FAVICON *****/
@@ -1177,12 +1039,11 @@ function egwp_title_toggle_post_metabox_save ( $post_id ){
 function egwp_custom_favicon( $favicon_url ) {
 	$options = get_option( 'egwp_option_array' );
 	return $options[ 'custom_favicon_url' ];
-
 }
 
 /***** FILTER FOR GRAVATAR *****/
+
 function egwp_custom_gravatar( $avatar_defaults ) {
-	
 	$options = get_option( 'egwp_option_array' );
 	$avatar_url = $options[ 'custom_gravatar_url' ];
     $avatar_defaults[$avatar_url] = "Easy Genesis Custom Gravatar";
@@ -1194,69 +1055,51 @@ function egwp_custom_gravatar( $avatar_defaults ) {
 function egwp_admin_custom_sizes( $sizes ) {
 	$options = get_option( 'egwp_option_array' );
 	$sizes_to_add = $options[ 'add_featured_image_size_array' ];
-
-	forEach ( $sizes_to_add as $size ) {
+	foreach ( $sizes_to_add as $size ) {
 		$name = 'egwp-custom-' . $size;
 		$sizes[ $name ] = 'Custom (' . $size . ')';
 	}
-    
     return $sizes;
 }
-		
-
 
 function egwp_admin_notice() {
 	global $egwp_errors;
 	global $egwp_notices;
-	
 	if ( !empty ( $egwp_notices ) ) {
 		echo "<div class='updated'><p>$egwp_notices</p></div>";
 	}
-	
 	if ( !empty ( $egwp_errors ) ) {
 		echo "<div class='error'><p>$egwp_errors</p></div>";
 	}
-	
 }	
-
 
 /***** AJAX SAVE CURRENT TAB *****/
 
 function egwp_set_current_tab() {
-
 	$success = update_user_option( $_REQUEST[ 'egwp_user_id' ], 'egwp_current_tab', $_REQUEST[ 'egwp_current_tab' ] );
-	
 	if ($success) {
 		echo 'current tab updated';
 	} else {
 		echo 'failure or unchanged';
 	}
-	
 	die();
-	
 }
 
 /***** ADD CUSTOM IMAGE SIZES FROM SAVED ARRAY *****/
-function egwp_add_custom_image_sizes( $types ) {
 
-	forEach ( $types as $image_type_string ) {
-	
+function egwp_add_custom_image_sizes( $types ) {
+	foreach ( $types as $image_type_string ) {
 		$pieces = explode( "x", $image_type_string );
 		$width = $pieces[0];
 		$height = $pieces[1];
 		$name_string = 'egwp-custom-' . $image_type_string;
 		add_image_size( $name_string, $width, $height, true );
-		
 	}
-	
 	add_filter( 'image_size_names_choose', 'egwp_admin_custom_sizes' );
-	
 }
 
 function egwp_upgrade_check() {
-	
 	$old_options = array (
-	
 		'ewp_gsc_remove_post_info'  => 'remove_post_info',
 		'ewp_gsc_remove_post_meta' => 'remove_post_meta',
 		'ewp_gsc_remove_footer' => 'remove_footer',
@@ -1274,17 +1117,12 @@ function egwp_upgrade_check() {
 		'ewp_gsc_add_subnav_to_bottom_of_header' => 'add_subnav_to_bottom_of_header',
 	);
 	$new_options = array();
-	
 	$genesis_options = get_option ( 'genesis-settings' );
-	
-	forEach ( $old_options as $key => $value ) {
-		
+	foreach ( $old_options as $key => $value ) {
 		if ( !empty ( genesis_get_option( $key ) ) ) {
 			$new_options[ $value ] = genesis_get_option( $key );
 			unset( $genesis_options[ $key ] );
-
 		}
-		
 	}
 	
 	/***** SPECIAL CHECKS FOR FEATURED IMAGES -> NOW ITS ONE SETTING FOR POSTS AND ONE FOR PAGES *****/
@@ -1292,36 +1130,27 @@ function egwp_upgrade_check() {
 	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_page_content_with_h1' ) ) ) {
 		$new_options[ 'featured_image_pages' ] = 'top-heading';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_page_content_with_h1' ] );
-
 	}
 	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_page_content_without_h1' ) ) ) {
 		$new_options[ 'featured_image_pages' ] = 'top';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_page_content_without_h1' ] );
-
 	}
 	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_post_content_with_h1' ) ) ) {
 		$new_options[ 'featured_image_posts' ] = 'top-heading';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_post_content_with_h1' ] );
-
 	}
 	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_post_content_without_h1' ) ) ) {
 		$new_options[ 'featured_image_posts' ] = 'top';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_post_content_without_h1' ] );
-
 	}		
 
-	if (! empty ( $new_options ) ) {
-	
+	if ( !empty ( $new_options ) ) {
 		$success = update_option( 'egwp_option_array', $new_options );
-		
 		global $egwp_notices;
 		$success ? $egwp_notices .= 'Imported Options from Genesis Simple Customizations' : "";
 		
 		/***** CLEAN UP / REMOVE OLD KEYS FROM GENESIS OPTIONS TABLE *****/
 		
-		update_option ( 'genesis-settings',  $genesis_options);
-		
+		update_option ( 'genesis-settings',  $genesis_options );
 	}
-
-};
-
+}

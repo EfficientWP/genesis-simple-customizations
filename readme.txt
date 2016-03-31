@@ -5,7 +5,7 @@ Author URI: http://efficientwp.com
 Plugin URI: http://efficientwp.com/plugins/genesis-simple-customizations
 Tags: genesis, genesiswp, studiopress, customize, customization, customizations, hook, hooks, functions, subnav, subnavigation, secondary navigation, header, favicon, post info, post meta, footer, edit link, featured image, search box, search button, read more, google fonts, after post, shortcode, shortcodes
 Requires at least: 4.0
-Tested up to: 4.4
+Tested up to: 4.4.2
 Stable tag: trunk
 License: GPLv2 or later
 
