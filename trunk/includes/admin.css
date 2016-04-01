@@ -11,6 +11,20 @@ h2 {
 h3 {
 	font-size: 1.2em;
 }
+.cta-button {
+    background: #3498db;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+.cta-button:hover {
+    background: #2e8ece;
+    color: #fff;
+}
 
 /***** NAV *****/
 
@@ -24,6 +38,15 @@ h3 {
 	width: 350px;
 }
 
+/***** EXTENSIONS TABLE *****/
+
+.extensions-table {
+	max-width: 1000px;
+}
+.extensions-table td {
+	background: #fff;
+	padding: 10px;
+}
 /***** BUTTONS *****/
 
 #submit {

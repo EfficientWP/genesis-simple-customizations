@@ -3,13 +3,13 @@
 Plugin Name: Easy Genesis (formerly Genesis Simple Customizations)
 Plugin URI: http://efficientwp.com/plugins/easy-genesis
 Description: Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
-Version: 1.4
+Version: 2.0
 Author: Doug Yuen
 Author URI: http://efficientwp.com
 License: GPLv2
 *****/
 
-$egwp_version = '1.4';
+$egwp_version = '2.0';
 
 /***** BASIC SECURITY *****/
 
@@ -345,7 +345,7 @@ function egwp_radio_layout_callback( $args ) {
 	$plugin_dir = plugin_dir_path( __FILE__ );
 	
 	$layouts = array(
-		'default'  => $plugin_dir . 'assets/default.gif',
+		'default'  => $plugin_dir . 'assets/default.png',
 		'content-sidebar' => $path . 'cs.gif',
 		'sidebar-content' => $path . 'sc.gif',
 		'content-sidebar-sidebar' => $path . 'css.gif',
@@ -387,13 +387,13 @@ function egwp_radio_featured_image_callback( $args ) {
 	$asset_dir = $plugin_dir . 'assets/';
 	
 	$layouts = array(
-		''  => $asset_dir . 'disabled.gif',
-		'top' => $asset_dir . 'top.gif',
-		'top-center' => $asset_dir . 'top-center.gif',
-		'top-top' => $asset_dir . 'top-top.gif',
-		'sidebar' => $asset_dir . 'sidebar.gif',
-		'sidebar-center' => $asset_dir . 'sidebar-center.gif',
-		'sidebar-top' => $asset_dir . 'sidebar-top.gif',		
+		''  => $asset_dir . 'disabled.png',
+		'top' => $asset_dir . 'top.png',
+		'top-center' => $asset_dir . 'top-center.png',
+		'top-top' => $asset_dir . 'top-top.png',
+		'sidebar' => $asset_dir . 'sidebar.png',
+		'sidebar-center' => $asset_dir . 'sidebar-center.png',
+		'sidebar-top' => $asset_dir . 'sidebar-top.png',		
 	);
 	
 	$html = '<fieldset class="genesis-layout-selector">';
@@ -469,7 +469,6 @@ function egwp_main_page_callback() {
 	?>
 	<div id='egwp_main_page'>
 		<h1>Easy Genesis</h1>
-		<h3>by EfficientWP</h3>
 		<form method='post' action='options.php' id='egwp_main_form' style='display:none;'>
 	
 			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e('Save Changes') ?>' />
@@ -511,10 +510,37 @@ function egwp_main_page_callback() {
 			<!-- EXTENSIONS 'PAGE' -->
 			<h2>Extensions</h2>
 			<input type='hidden' id='egwp_addons_section'>
-			<table>
-				<td>Addons.jpg?</td>
+			<table class="extensions-table" cellspacing="10" cellpadding="10">
+				<tr>
+					<td>
+						<h3>Pages</h3>
+						<p><b>Free at WordPress.org</b><br /></p>
+						<p>This extension allows you to universally remove titles across your pages, and display the featured image (if there is one) at the top of your pages. You may need to write custom CSS to style the featured image the way you want.<br /><br /></p>
+						<p><a class="cta-button" href="http://wordpress.org/plugins/easy-genesis-pages" target="_blank">Download</a><br /></p>
+					</td>
+					<td>
+						<h3>Extras</h3>
+						<p><b>Premium Extension</b><br /></p>
+						<p>This extension allows you to customize the display of your navigation menus, add content to the beginning and end of your navigation, edit your footer, force sidebar layouts for different page templates, and customize your breadcrumbs.<br /><br /></p>
+						<p><a class="cta-button" href="http://efficientwp.com/products/easy-genesis" target="_blank">Learn More</a><br /></p>
+					</td>
+					<td>
+						<h3>Blog</h3>
+						<p><b>Premium Extension</b><br /></p>
+						<p>This extension allows you to make changes to your post info, post meta, in-post navigation text, archive navigation text, display featured images, display content above your blog page template, and more.<br /><br /></p>
+						<p><a class="cta-button" href="http://efficientwp.com/products/easy-genesis" target="_blank">Learn More</a><br /></p>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<h3>Coming Soon:</h3>
+						<ul>
+							<li>- Comments extension</li>
+							<li>- Featured image styling in the Pages and Blog extensions</li>
+						</ul>
+					</td>
+				</tr>
 			</table>
-		
 			<?php
 				settings_fields( 'egwp_main_settings' );
 				do_settings_sections( 'egwp_main_settings_page' );
