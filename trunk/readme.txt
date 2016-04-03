@@ -9,7 +9,7 @@ Tested up to: 4.4.2
 Stable tag: trunk
 License: GPLv2 or later
 
-Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
+Easily make many customizations and setting changes to your Genesis-powered site, without having to write custom code.
 
 == Description ==
 

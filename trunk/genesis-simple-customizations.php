@@ -1140,7 +1140,7 @@ function egwp_upgrade_check() {
 	$new_options = array();
 	$genesis_options = get_option ( 'genesis-settings' );
 	foreach ( $old_options as $key => $value ) {
-		if ( !empty ( genesis_get_option( $key ) ) ) {
+		if ( genesis_get_option( $key ) !== FALSE ) {
 			$new_options[ $value ] = genesis_get_option( $key );
 			unset( $genesis_options[ $key ] );
 		}
@@ -1148,24 +1148,24 @@ function egwp_upgrade_check() {
 	
 	/***** SPECIAL CHECKS FOR FEATURED IMAGES -> NOW ITS ONE SETTING FOR POSTS AND ONE FOR PAGES *****/
 	
-	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_page_content_with_h1' ) ) ) {
+	if ( genesis_get_option( 'ewp_gsc_display_featured_image_above_page_content_with_h1' ) !== FALSE ) {
 		$new_options[ 'featured_image_pages' ] = 'top-heading';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_page_content_with_h1' ] );
 	}
-	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_page_content_without_h1' ) ) ) {
+	if ( genesis_get_option( 'ewp_gsc_display_featured_image_above_page_content_without_h1' ) !== FALSE ) {
 		$new_options[ 'featured_image_pages' ] = 'top';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_page_content_without_h1' ] );
 	}
-	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_post_content_with_h1' ) ) ) {
+	if ( genesis_get_option( 'ewp_gsc_display_featured_image_above_post_content_with_h1' ) !== FALSE ) {
 		$new_options[ 'featured_image_posts' ] = 'top-heading';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_post_content_with_h1' ] );
 	}
-	if ( !empty ( genesis_get_option( 'ewp_gsc_display_featured_image_above_post_content_without_h1' ) ) ) {
+	if ( genesis_get_option( 'ewp_gsc_display_featured_image_above_post_content_without_h1' ) !== FALSE ) {
 		$new_options[ 'featured_image_posts' ] = 'top';
 		unset( $genesis_options[ 'ewp_gsc_display_featured_image_above_post_content_without_h1' ] );
 	}		
 
-	if ( !empty ( $new_options ) ) {
+	if ( $new_options !== FALSE ) {
 		$success = update_option( 'egwp_option_array', $new_options );
 		global $egwp_notices;
 		$success ? $egwp_notices .= 'Imported Options from Genesis Simple Customizations' : "";
