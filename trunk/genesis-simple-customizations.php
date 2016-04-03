@@ -3,13 +3,13 @@
 Plugin Name: Easy Genesis (formerly Genesis Simple Customizations)
 Plugin URI: http://efficientwp.com/plugins/easy-genesis
 Description: Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
-Version: 2.1
+Version: 2.2
 Author: Doug Yuen
 Author URI: http://efficientwp.com
 License: GPLv2
 *****/
 
-$egwp_version = '2.1';
+$egwp_version = '2.2';
 
 /***** BASIC SECURITY *****/
 
@@ -125,11 +125,11 @@ function egwp_toolbar_button() {
 	$wp_admin_bar->add_menu( $args );
 }
 
-/***** REGISTSER THE SETTINGS BOXES AND FIELDS *****/
+/***** REGISTER THE SETTINGS BOXES AND FIELDS *****/
 
 function egwp_register_settings() {
 
-	/***** REGISTSER JS AND CSS *****/
+	/***** REGISTER JS AND CSS *****/
 	
 	wp_register_style( 'egwp_admin_stylesheet', plugins_url( 'includes/admin.css', __FILE__ ) );
 	wp_register_script( 'egwp_admin_js', plugins_url( 'includes/admin.js', __FILE__ ) );
@@ -383,7 +383,7 @@ function egwp_radio_featured_image_callback( $args ) {
 	
 	$theme_root = get_theme_root();
 	$path = $theme_root . '/genesis/lib/admin/images/layouts/';
-	$plugin_dir = plugin_dir_path( __FILE__ );
+	$plugin_dir = plugin_dir_url( __FILE__ );
 	$asset_dir = $plugin_dir . 'assets/';
 	
 	$layouts = array(
@@ -1138,7 +1138,7 @@ function egwp_upgrade_check() {
 		'ewp_gsc_add_subnav_to_bottom_of_header' => 'add_subnav_to_bottom_of_header',
 	);
 	$new_options = array();
-	$genesis_options = get_option ( 'genesis-settings' );
+	$genesis_options = get_option( 'genesis-settings' );
 	foreach ( $old_options as $key => $value ) {
 		if ( genesis_get_option( $key ) !== FALSE ) {
 			$new_options[ $value ] = genesis_get_option( $key );
@@ -1172,6 +1172,6 @@ function egwp_upgrade_check() {
 		
 		/***** CLEAN UP / REMOVE OLD KEYS FROM GENESIS OPTIONS TABLE *****/
 		
-		update_option ( 'genesis-settings',  $genesis_options );
+		update_option( 'genesis-settings',  $genesis_options );
 	}
 }
