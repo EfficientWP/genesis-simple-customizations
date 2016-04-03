@@ -13,7 +13,7 @@ Easily make many customizations and setting changes to your Genesis-powered site
 
 == Description ==
 
-The Easy Genesis plugin allows you to make many customizations and setting changes to your Genesis-powered site, without having to write custom code. You must be using version 2.2 or higher of the [Genesis theme framework](http://efficientwp.com/genesis "Genesis theme framework").
+The Easy Genesis plugin allows you to make many customizations and setting changes to your Genesis-powered site, without having to write custom code. You must be using version 2.2 or higher of the [Genesis theme framework](https://efficientwp.com/genesis "Genesis theme framework").
 
 **IMPORTANT: MAJOR UPDATES WITH VERSION 2.0**
 
@@ -47,15 +47,15 @@ The Easy Genesis plugin allows you to make many customizations and setting chang
 * Custom Google Fonts (URL)
 * Add Custom Image Sizes
 
-**Free Extension: [Easy Genesis - Pages Extension](http://wordpress.org/plugins/easy-genesis-pages "Easy Genesis - Pages Extension")**
+**Free Extension: [Easy Genesis - Pages Extension](https://efficientwp.com/products/easy-genesis-pages "Easy Genesis - Pages Extension")**
 
 This extension allows you to universally remove titles across your pages, and display the featured image (if there is one) at the top of your pages. You may need to write custom CSS to style the featured image the way you want.
 
-**Premium Extension: [Easy Genesis - Extras Extension](http://efficientwp.com/products/easy-genesis "Easy Genesis - Extras Extension")**
+**Premium Extension: [Easy Genesis - Extras Extension](https://efficientwp.com/downloads/easy-genesis-extras-extension "Easy Genesis - Extras Extension")**
 
 This extension allows you to customize the display of your navigation menus, add content to the beginning and end of your navigation, edit your footer, force sidebar layouts for different page templates, and customize your breadcrumbs.
 
-**Premium Extension: [Easy Genesis - Blog Extension](http://efficientwp.com/products/easy-genesis "Easy Genesis - Blog Extension")**
+**Premium Extension: [Easy Genesis - Blog Extension](https://efficientwp.com/downloads/easy-genesis-blog-extension "Easy Genesis - Blog Extension")**
 
 This extension allows you to make changes to your post info, post meta, in-post navigation text, archive navigation text, display featured images, display content above your blog page template, and more.
 
@@ -64,7 +64,7 @@ This extension allows you to make changes to your post info, post meta, in-post 
 * Comments extension
 * Featured image styling in the Pages and Blog extensions
 
-Created by EfficientWP. [Plugin page](http://efficientwp.com/products/easy-genesis "Easy Genesis").
+Created by EfficientWP. [Plugin page](https://efficientwp.com/products/easy-genesis "Easy Genesis").
 
 == Installation ==
 
@@ -84,13 +84,16 @@ Manual install:
 
 == Frequently Asked Questions ==
 
-[Plugin page](http://efficientwp.com/products/easy-genesis "Easy Genesis")
+[Plugin page](https://efficientwp.com/products/easy-genesis "Easy Genesis")
 
 == Screenshots ==
 
 1. The Easy Genesis plugin panel.
 
 == Changelog ==
+
+= Easy Genesis 2.1 =
+* Updated link to Easy Genesis - Pages Extension (awaiting WordPress.org plugin review) and direct links to extension pages
 
 = Easy Genesis 2.0 =
 * IMPORTANT: MAJOR UPDATES

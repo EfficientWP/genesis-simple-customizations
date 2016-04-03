@@ -3,13 +3,13 @@
 Plugin Name: Easy Genesis (formerly Genesis Simple Customizations)
 Plugin URI: http://efficientwp.com/plugins/easy-genesis
 Description: Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
-Version: 2.0
+Version: 2.1
 Author: Doug Yuen
 Author URI: http://efficientwp.com
 License: GPLv2
 *****/
 
-$egwp_version = '2.0';
+$egwp_version = '2.1';
 
 /***** BASIC SECURITY *****/
 
@@ -514,21 +514,21 @@ function egwp_main_page_callback() {
 				<tr>
 					<td>
 						<h3>Pages</h3>
-						<p><b>Free at WordPress.org</b><br /></p>
+						<p><b>Free Extension</b><br /></p>
 						<p>This extension allows you to universally remove titles across your pages, and display the featured image (if there is one) at the top of your pages. You may need to write custom CSS to style the featured image the way you want.<br /><br /></p>
-						<p><a class="cta-button" href="http://wordpress.org/plugins/easy-genesis-pages" target="_blank">Download</a><br /></p>
+						<p><a class="cta-button" href="https://efficientwp.com/products/easy-genesis-pages" target="_blank">Learn More</a><br /></p>
 					</td>
 					<td>
 						<h3>Extras</h3>
 						<p><b>Premium Extension</b><br /></p>
 						<p>This extension allows you to customize the display of your navigation menus, add content to the beginning and end of your navigation, edit your footer, force sidebar layouts for different page templates, and customize your breadcrumbs.<br /><br /></p>
-						<p><a class="cta-button" href="http://efficientwp.com/products/easy-genesis" target="_blank">Learn More</a><br /></p>
+						<p><a class="cta-button" href="https://efficientwp.com/downloads/easy-genesis-extras-extension" target="_blank">Learn More</a><br /></p>
 					</td>
 					<td>
 						<h3>Blog</h3>
 						<p><b>Premium Extension</b><br /></p>
 						<p>This extension allows you to make changes to your post info, post meta, in-post navigation text, archive navigation text, display featured images, display content above your blog page template, and more.<br /><br /></p>
-						<p><a class="cta-button" href="http://efficientwp.com/products/easy-genesis" target="_blank">Learn More</a><br /></p>
+						<p><a class="cta-button" href="https://efficientwp.com/downloads/easy-genesis-blog-extension" target="_blank">Learn More</a><br /></p>
 					</td>
 				</tr>
 				<tr>
