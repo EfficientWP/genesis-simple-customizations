@@ -15,8 +15,9 @@ Easily make many customizations and setting changes to your Genesis-powered site
 
 The Easy Genesis plugin allows you to make many customizations and setting changes to your Genesis-powered site, without having to write custom code. You must be using version 2.2 or higher of the [Genesis theme framework](https://efficientwp.com/genesis "Genesis theme framework").
 
-**IMPORTANT: Easy Genesis 2.2 Updates**
+**IMPORTANT: Easy Genesis 2.2 and 2.3 Updates**
 
+* Fixed deprecated function bug causing conflict with Beaver Builder
 * Fixed bug with upgrade not saving old settings (If you upgraded to version 2.0 or 2.1, and saved any settings, you may need to redo some settings. If you are upgrading from a previous version you won't have to worry about this.)
 * Fixed bug with featured image icons not showing up
 
@@ -96,6 +97,9 @@ Manual install:
 1. The Easy Genesis plugin panel.
 
 == Changelog ==
+
+= Easy Genesis 2.3 =
+* Fixed deprecated function bug causing conflict with Beaver Builder
 
 = Easy Genesis 2.2 =
 * Fixed bug with upgrade not saving old settings

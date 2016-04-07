@@ -3,13 +3,13 @@
 Plugin Name: Easy Genesis (formerly Genesis Simple Customizations)
 Plugin URI: http://efficientwp.com/plugins/easy-genesis
 Description: Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
-Version: 2.2
+Version: 2.3
 Author: Doug Yuen
 Author URI: http://efficientwp.com
 License: GPLv2
 *****/
 
-$egwp_version = '2.2';
+$egwp_version = '2.3';
 
 /***** BASIC SECURITY *****/
 
@@ -46,9 +46,10 @@ add_action( 'wp_ajax_nopriv_egwp_set_current_tab', 'egwp_set_current_tab' );
 
 /***** CHANGE THE WP MEDIA UPLOADER'S TEXT "INSERT INTO POST" TO "USE THIS IMAGE" *****/
 
-add_filter( 'attribute_escape', 'egwp_change_insert_post_text', 10, 2 );
+add_filter( 'esc_attr', 'egwp_change_insert_post_text', 10, 2 );
+
 function egwp_change_insert_post_text( $safe_text, $text ) {
-    return str_replace(__('Insert into Post'), __('Use this image'), $text );
+    return str_replace( __( 'Insert into Post' ), __( 'Use this image' ), $text );
 }
 
 /***** ADD FRONT-END HOOKS *****/
@@ -724,31 +725,31 @@ function egwp_genesis_init () {
 		add_filter( 'genesis_footer_creds_text', 'egwp_footer_output_filter', 20 );
 		add_filter( 'genesis_footer_output', 'egwp_footer_output_filter', 20 );
 	}
-	if ( !empty( $options[ 'custom_comments_area_text' ] ) OR !empty( $options[ 'comment_title_wrap' ] ) AND function_exists ( 'egwp_comments_title_filter' ) ) {
+	if ( !empty( $options[ 'custom_comments_area_text' ] ) OR !empty( $options[ 'comment_title_wrap' ] ) AND function_exists( 'egwp_comments_title_filter' ) ) {
 		add_filter( 'genesis_title_comments', 'egwp_comments_title_filter', 20 );
 	}
 	if ( !empty( $options[ 'add_genesis_author_boxes_to_all' ] ) ) {
 		add_filter( 'add_genesis_author_boxes_to_all', 'egwp_add_genesis_author_boxes', 20 );
 	}			
-	if ( !empty( $options[ 'custom_no_comments_text' ] ) AND function_exists ( 'egwp_custom_no_comments_text' ) ) {
+	if ( !empty( $options[ 'custom_no_comments_text' ] ) AND function_exists( 'egwp_custom_no_comments_text' ) ) {
 		add_filter( 'genesis_no_comments_text', 'egwp_custom_no_comments_text', 20 );
 	}			
-	if ( !empty( $options[ 'custom_comments_closed_text' ] ) AND function_exists ( 'egwp_custom_comments_closed_text' ) ) {
+	if ( !empty( $options[ 'custom_comments_closed_text' ] ) AND function_exists( 'egwp_custom_comments_closed_text' ) ) {
 		add_filter( 'genesis_comments_closed_text', 'egwp_custom_comments_closed_text', 20 );
 	}			
-	if ( !empty( $options[ 'custom_pings_title' ] ) AND function_exists ( 'egwp_custom_pings_title' ) ) {
+	if ( !empty( $options[ 'custom_pings_title' ] ) AND function_exists( 'egwp_custom_pings_title' ) ) {
 		add_filter( 'genesis_title_pings', 'egwp_custom_pings_title', 20 );
 	}	
 	if ( !empty( $options[ 'custom_avatar_size' ] ) ) {
 		add_filter( 'genesis_author_box_gravatar_size', 'egwp_custom_avatar_size' );
 	}		
-	if ( !empty( $options[ 'custom_avatar_size_comment' ] ) AND function_exists ( 'egwp_custom_avatar_size_comment' ) ) {
+	if ( !empty( $options[ 'custom_avatar_size_comment' ] ) AND function_exists( 'egwp_custom_avatar_size_comment' ) ) {
 		add_filter( 'genesis_comment_list_args', 'egwp_custom_avatar_size_comment' );
 	}	
-	if ( !empty( $options[ 'custom_author_says_text' ] ) AND function_exists ( 'egwp_custom_author_says_text' ) ) {
+	if ( !empty( $options[ 'custom_author_says_text' ] ) AND function_exists( 'egwp_custom_author_says_text' ) ) {
 		add_filter( 'comment_author_says_text', 'egwp_custom_author_says_text' );
 	}		
-	if ( !empty( $options[ 'custom_comment_waiting_mod_text' ] ) AND function_exists ( 'egwp_custom_comment_waiting_mod_text' ) ) {
+	if ( !empty( $options[ 'custom_comment_waiting_mod_text' ] ) AND function_exists( 'egwp_custom_comment_waiting_mod_text' ) ) {
 		add_filter( 'genesis_comment_awaiting_moderation', 'egwp_custom_comment_waiting_mod_text' );
 	}
 	if ( !empty( $options[ 'add_featured_image_size_array' ] ) ) {
@@ -761,7 +762,7 @@ function egwp_genesis_init () {
 		add_filter( 'avatar_defaults', 'egwp_custom_gravatar' );
 		update_option( 'avatar_default', $options[ 'custom_gravatar_url' ] );
 	}	
-	if ( function_exists ( 'egwp_breadcrumb_args' ) ) {
+	if ( function_exists( 'egwp_breadcrumb_args' ) ) {
 		add_filter( 'genesis_breadcrumb_args', 'egwp_breadcrumb_args' );
 	}
 	if ( !empty( $options[ 'remove_header'] ) ) {
@@ -773,21 +774,21 @@ function egwp_genesis_init () {
 	if ( !empty( $options[ 'remove_secondary_nav'] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 	}
-	if ( !empty( $options[ 'custom_back_to_top_text'] ) AND function_exists ( 'egwp_back_to_top_filter' ) ) {
+	if ( !empty( $options[ 'custom_back_to_top_text'] ) AND function_exists( 'egwp_back_to_top_filter' ) ) {
 		add_filter( 'genesis_footer_backtotop_text', 'egwp_back_to_top_filter' );
 	}
-	if ( !empty( $options[ 'display_content_on_blog'] )AND function_exists ( 'egwp_add_content_to_blog' ) ) {
+	if ( !empty( $options[ 'display_content_on_blog'] )AND function_exists( 'egwp_add_content_to_blog' ) ) {
 		add_action ( 'genesis_loop', 'egwp_add_content_to_blog', 1 );
 	}
-	if ( !empty( $options[ 'custom_nav_html_before'] ) AND function_exists ( 'egwp_add_nav_html_before' ) ) {
+	if ( !empty( $options[ 'custom_nav_html_before'] ) AND function_exists( 'egwp_add_nav_html_before' ) ) {
 		add_filter( 'genesis_nav_items', 'egwp_add_nav_html_before' );
 		add_filter( 'wp_nav_menu_items', 'egwp_add_nav_html_before' );
 	}
-	if ( !empty( $options[ 'custom_nav_html_after'] ) AND function_exists ( 'egwp_add_nav_html_after' ) ) {
+	if ( !empty( $options[ 'custom_nav_html_after'] ) AND function_exists( 'egwp_add_nav_html_after' ) ) {
 		add_filter( 'genesis_nav_items', 'egwp_add_nav_html_after' );
 		add_filter( 'wp_nav_menu_items', 'egwp_add_nav_html_after' );
 	}
-	if ( !empty( $options[ 'add_post_navigation'] ) AND function_exists ( 'egwp_prev_next_post_nav' ) ) {
+	if ( !empty( $options[ 'add_post_navigation'] ) AND function_exists( 'egwp_prev_next_post_nav' ) ) {
 		add_action( 'genesis_entry_footer', 'egwp_prev_next_post_nav' );
 	}	
 	if ( !empty( $options[ 'custom_breadcrumb_location'] ) ) {
@@ -802,22 +803,22 @@ function egwp_genesis_init () {
 			add_action( $hook, 'genesis_do_nav' );
 		}
 	}
-	if ( !empty( $options[ 'custom_secondary_nav_location'] ) ) {
+	if ( !empty( $options[ 'custom_secondary_nav_location' ] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 		foreach ( $options[ 'custom_secondary_nav_location'] as $hook ) {
 			add_action( $hook, 'genesis_do_subnav' );
 		}
 	}
-	if ( !empty( $options[ 'custom_next_archive_label' ] ) AND function_exists ( 'egwp_archive_next_text' ) ) {
+	if ( !empty( $options[ 'custom_next_archive_label' ] ) AND function_exists( 'egwp_archive_next_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
-		update_option ( 'genesis-settings',  $genesis_options);
+		update_option( 'genesis-settings',  $genesis_options );
 		add_filter( 'genesis_next_link_text', 'egwp_archive_next_text' );
 	}		
-	if ( !empty( $options[ 'custom_previous_archive_label' ] ) AND function_exists ( 'egwp_archive_prev_text' ) ) {
+	if ( !empty( $options[ 'custom_previous_archive_label' ] ) AND function_exists( 'egwp_archive_prev_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
-		update_option ( 'genesis-settings',  $genesis_options);
+		update_option( 'genesis-settings',  $genesis_options );
 		add_filter( 'genesis_prev_link_text', 'egwp_archive_prev_text' );
 	}			
 }
@@ -874,10 +875,10 @@ function egwp_display_featured_image_page() {
 	global $post;
 	$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 
-	if ( is_page ( $post ) AND !empty ( $featured_image_array ) ) {
+	if ( is_page( $post ) AND !empty( $featured_image_array ) ) {
 	
 		$options = get_option( 'egwp_option_array' );
-		$setting = $options [ 'featured_image_pages'];
+		$setting = $options [ 'featured_image_pages' ];
 		$img_url = $featured_image_array[0];
 		$heading = '';
 		$mode = '';
@@ -910,11 +911,11 @@ function egwp_display_featured_image_page() {
 		}
 		
 		echo '<div class="egwp_featured_image" style="position:relative;">';
-		if ( !empty ( $heading ) AND ($mode == 'above') ) {
+		if ( !empty ( $heading ) AND ( $mode == 'above' ) ) {
 			echo "<h1 class='featured-image' style='text-align: center'>$heading</h1>";
 		}
 		echo "<img src='$img_url'>";
-		if ( !empty ( $heading ) AND ($mode == 'center') ) {
+		if ( !empty ( $heading ) AND ( $mode == 'center' ) ) {
 			echo "<h1 class='featured-image' style='left: 0; position:absolute; text-align:center; top: 45%; left: 0; width: 100%; color: white;'>$heading</h1>";
 		}
 		echo '</div>';
@@ -925,10 +926,10 @@ function egwp_display_featured_image_post() {
 	global $post;
 	$featured_image_array = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'full' );
 	
-	if ( is_single( $post ) AND !empty ( $featured_image_array ) ) {
+	if ( is_single( $post ) AND !empty( $featured_image_array ) ) {
 	
 		$options = get_option( 'egwp_option_array' );
-		$setting = $options [ 'featured_image_posts'];
+		$setting = $options [ 'featured_image_posts' ];
 		$img_url = $featured_image_array[0];
 		$heading = '';
 		$mode = '';
@@ -961,11 +962,11 @@ function egwp_display_featured_image_post() {
 		}
 		
 		echo '<div class="egwp_featured_image" style="position:relative;">';
-		if ( !empty ( $heading ) AND ($mode == 'above') ) {
+		if ( !empty( $heading ) AND ( $mode == 'above' ) ) {
 			echo "<h1 class='featured-image' style='text-align: center'>$heading</h1>";
 		}
 		echo "<img src='$img_url'>";
-		if ( !empty ( $heading ) AND ($mode == 'center') ) {
+		if ( !empty( $heading ) AND ( $mode == 'center' ) ) {
 			echo "<h1 class='featured-image' style='left: 0; position:absolute; text-align:center; top: 45%; left: 0; width: 100%; color: white;'>$heading</h1>";
 		}
 		echo '</div>';
@@ -1030,7 +1031,7 @@ function egwp_post_meta_filter( $text ) {
 
 function egwp_footer_output_filter( $text ) {
 	$options = get_option( 'egwp_option_array' );
-	$content = do_shortcode ( $options[ 'custom_footer_output' ] );
+	$content = do_shortcode( $options[ 'custom_footer_output' ] );
 	return $content;
 }
 
@@ -1048,7 +1049,7 @@ function egwp_custom_avatar_size() {
 /***** CUSTOM META BOX SAVE FUNCTION, FOR PER PAGE / POST TITLE OVERRIDE SETTING *****/
 
 function egwp_title_toggle_post_metabox_save ( $post_id ){
-	if ( ! current_user_can( 'edit_post', $post_id ) ) {
+	if ( !current_user_can( 'edit_post', $post_id ) ) {
 		return;
 	}
 	$value = empty ($_POST[ 'egwp_title_toggle_post' ]) ? 'default' : $_POST[ 'egwp_title_toggle_post' ];
@@ -1086,10 +1087,10 @@ function egwp_admin_custom_sizes( $sizes ) {
 function egwp_admin_notice() {
 	global $egwp_errors;
 	global $egwp_notices;
-	if ( !empty ( $egwp_notices ) ) {
+	if ( !empty( $egwp_notices ) ) {
 		echo "<div class='updated'><p>$egwp_notices</p></div>";
 	}
-	if ( !empty ( $egwp_errors ) ) {
+	if ( !empty( $egwp_errors ) ) {
 		echo "<div class='error'><p>$egwp_errors</p></div>";
 	}
 }	
@@ -1098,7 +1099,7 @@ function egwp_admin_notice() {
 
 function egwp_set_current_tab() {
 	$success = update_user_option( $_REQUEST[ 'egwp_user_id' ], 'egwp_current_tab', $_REQUEST[ 'egwp_current_tab' ] );
-	if ($success) {
+	if ( $success ) {
 		echo 'current tab updated';
 	} else {
 		echo 'failure or unchanged';
