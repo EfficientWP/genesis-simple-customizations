@@ -6,7 +6,7 @@ Plugin URI: http://efficientwp.com/products/easy-genesis
 Tags: genesis, genesiswp, studiopress, customize, customization, hook, functions, primary navigation, secondary navigation, header, favicon, post info, post meta, footer, edit link, featured image, search box, search button, read more, google fonts, after post, shortcode, genesis favicon, favicon, gravatar, image size
 Requires at least: 4.0
 Tested up to: 4.6.1
-Stable tag: 2.4
+Stable tag: trunk
 License: GPLv2 or later
 
 Easily make many customizations and setting changes to your Genesis-powered site, without having to write custom code.
