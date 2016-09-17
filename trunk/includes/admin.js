@@ -5,14 +5,14 @@ jQuery( document ).ready(function ( $ ) {
 	
 	/***** LOAD VARIABLES *****/
 	
-	var ajax_url = egwp_data.ajax_url;
-	var current_tab = egwp_data.current_tab;
-	var user_id = egwp_data.user_id;
+	var ajax_url = gcwp_data.ajax_url;
+	var current_tab = gcwp_data.current_tab;
+	var user_id = gcwp_data.user_id;
 	loadCustomImageSizes();
 		
 	/***** UNHIDE MAIN FORM WHEN LOADING IS DONE (HIDDEN DURING RENDER) *****/
 	
-	$('#egwp_main_form').show();
+	$('#gcwp_main_form').show();
 	
 	/***** SET DEFAULT TAB AS OPEN *****/
 	
@@ -24,13 +24,13 @@ jQuery( document ).ready(function ( $ ) {
 		/***** SPECIAL CASE FOR COMMENTS, HAS 2 SUB SECTIONS *****/
 		
 		switch( current_tab ) {
-			case 'egwp_comment_setting_section_nav':
+			case 'gcwp_comment_setting_section_nav':
 				show_comment_setting_section( current_tab );	
 				break;
-			case 'egwp_footer_setting_section_nav':
+			case 'gcwp_footer_setting_section_nav':
 				show_footer_setting_section( current_tab );
 				break;
-			case 'egwp_posts_setting_section_nav':
+			case 'gcwp_posts_setting_section_nav':
 				show_posts_setting_section( current_tab );
 				break;
 			default:
@@ -41,7 +41,7 @@ jQuery( document ).ready(function ( $ ) {
 
 		
 	} else {
-		var id = 'egwp_basic_setting_section';
+		var id = 'gcwp_basic_setting_section';
 		$( '#' + id ).prev().show();
 		$( '#' + id ).next().show();
 	}
@@ -58,13 +58,13 @@ jQuery( document ).ready(function ( $ ) {
 			ajax_save_current_tab( current_tab );
 			
 			switch(current_tab) {
-				case 'egwp_comment_setting_section_nav':
+				case 'gcwp_comment_setting_section_nav':
 					show_comment_setting_section();	
 					break;
-				case 'egwp_footer_setting_section_nav':
+				case 'gcwp_footer_setting_section_nav':
 					show_footer_setting_section();
 					break;
-				case 'egwp_posts_setting_section_nav':
+				case 'gcwp_posts_setting_section_nav':
 					show_posts_setting_section();
 					break;
 				default:
@@ -78,7 +78,7 @@ jQuery( document ).ready(function ( $ ) {
 		
 	/***** RESET ALL BUTTON *****/	
 	
-	$( '#egwp_reset' ).click( function() {
+	$( '#gcwp_reset' ).click( function() {
 		if ( confirm( 'Reset All Data?' ) ) {
 			$( 'input:checkbox' ).prop( 'checked', false );
 			$( 'input:text' ).prop( 'value', '' );
@@ -87,7 +87,7 @@ jQuery( document ).ready(function ( $ ) {
 			$( '.genesis-layout-selector' ).find( ':first' ).addClass( 'egwp-layout-label-selected' );
 			$( 'option:selected' ).removeAttr( 'selected' );
 			$( '.genesis-layout-selector' ).find( ':first' ).next().prop( 'checked', true );
-			egwp_set_onoff_colors();
+			gcwp_set_onoff_colors();
 		} else {
 		
 			/***** DO NOTHING *****/
@@ -97,8 +97,8 @@ jQuery( document ).ready(function ( $ ) {
 	
 	/***** SET CURRENT STATE OF ON/OFF CHECKBOX COLORS *****/
 	
-	function egwp_set_onoff_colors() {
-		$( '.egwp_checkbox' ).each( function() {
+	function gcwp_set_onoff_colors() {
+		$( '.gcwp_checkbox' ).each( function() {
 			if ( $( this ).children( 'input:checkbox' ).is( ':checked' ) ) {
 				$( this ).css( 'background-color', '#27ae60' );
 				
@@ -107,11 +107,11 @@ jQuery( document ).ready(function ( $ ) {
 			}
 		});
 	}
-	egwp_set_onoff_colors();
+	gcwp_set_onoff_colors();
 	
 	/***** TOGGLE CHECKBOX ON DIV CLICK AND SET COLORS *****/
 	
-	$( '.egwp_checkbox' ).click( function() {
+	$( '.gcwp_checkbox' ).click( function() {
 	
 		/***** SYNC CHECKBOXES IF IT APPEARS IN MORE THAN 1 SPOT *****/
 		
@@ -121,10 +121,10 @@ jQuery( document ).ready(function ( $ ) {
 	
 		if ( $( this ).children( 'input:checkbox' ).is( ':checked' ) ) {
 			$( '#' + id ).prop( 'checked', false );
-			$( '#' + id ).parent( '.egwp_checkbox' ).css( 'background-color', '#e74c3c' );
+			$( '#' + id ).parent( '.gcwp_checkbox' ).css( 'background-color', '#e74c3c' );
 		} else {
 			$( '#' + id ).prop( 'checked', true );
-			$( '#' + id ).parent( '.egwp_checkbox' ).css( 'background-color', '#27ae60' );
+			$( '#' + id ).parent( '.gcwp_checkbox' ).css( 'background-color', '#27ae60' );
 		}
 	});
 	
@@ -146,7 +146,7 @@ jQuery( document ).ready(function ( $ ) {
 	
 	/***** PREVENT ACCIDENTAL NAVIGATION AWAY *****/
 	
-	$( 'input' ).not( '#egwp_import_setting_file' ).bind( 'change', function() { 
+	$( 'input' ).not( '#gcwp_import_setting_file' ).bind( 'change', function() { 
 		setConfirmUnload( true );
 	}); 
 	
@@ -156,7 +156,7 @@ jQuery( document ).ready(function ( $ ) {
 	
 	/***** SYNC TEXTBOXES IF IT APPEARS IN MORE THAN 1 SPOT *****/
 	
-	$( '.egwp_text' ).keyup( function() {
+	$( '.gcwp_text' ).keyup( function() {
 		value = $( this ).val();
 		var id = $( this ).attr( 'id' );
 		id = id.replace( '[','\\[' );
@@ -170,10 +170,10 @@ jQuery( document ).ready(function ( $ ) {
 	/***** SPECIAL CASE FOR COMMENTS, HAS 2 SUB SECTIONS *****/
 	
 	function show_comment_setting_section() {
-		var id = 'egwp_comment_setting_section';
+		var id = 'gcwp_comment_setting_section';
 		$( '#' + id ).prev().show( 'fast' );
 		$( '#' + id ).next().show( 'fast' );
-		id = 'egwp_comment_form_setting_section';
+		id = 'gcwp_comment_form_setting_section';
 		$( '#' + id ).prev().show( 'fast' );
 		$( '#' + id ).next().show( 'fast' );	
 	}
@@ -181,21 +181,21 @@ jQuery( document ).ready(function ( $ ) {
 	/***** SPECIAL CASE FOR FOOTER, SHOULD SHOW FOOTER SHORTCODES H2 *****/
 	
 	function show_footer_setting_section() {
-		var id = 'egwp_footer_setting_section';
+		var id = 'gcwp_footer_setting_section';
 		$( '#' + id ).prev().show( 'fast' );
 		$( '#' + id ).next().show( 'fast' );
 
-		$( '#egwp_footer_shortcodes' ).show( 'fast' );	
+		$( '#gcwp_footer_shortcodes' ).show( 'fast' );	
 	}
 	
 	/***** SPECIAL CASE FOR POSTS, SHOULD SHOW POST SHORTCODES H2 *****/
 	
 	function show_posts_setting_section() {
-		var id = 'egwp_posts_setting_section';
+		var id = 'gcwp_posts_setting_section';
 		$( '#' + id ).prev().show( 'fast' );
 		$( '#' + id ).next().show( 'fast' );
 
-		$( '#egwp_post_shortcodes' ).show( 'fast' );	
+		$( '#gcwp_post_shortcodes' ).show( 'fast' );	
 	}
 	
 	/***** AJAX TO SAVE THE LAST TAB WE CLICKED ON *****/
@@ -204,7 +204,7 @@ jQuery( document ).ready(function ( $ ) {
 		
 		$.ajax({
 			url: ajax_url,
-			data: { 'action':'egwp_set_current_tab', 'egwp_current_tab':id, 'egwp_user_id': user_id },
+			data: { 'action':'gcwp_set_current_tab', 'gcwp_current_tab':id, 'gcwp_user_id': user_id },
 			type: 'POST',
 			datatype: 'text'
 		}).done( function( returnedData ) {
@@ -215,30 +215,30 @@ jQuery( document ).ready(function ( $ ) {
 	
 	/***** CUSTOM IMAGE ADD/REMOVE CONTROLS *****/
 	
-	$( '#egwp_add_image_type' ).click( function() {
+	$( '#gcwp_add_image_type' ).click( function() {
 		
-		var newWidth = $( '#egwp_add_image_width' ).val();
-		var newHeight = $( '#egwp_add_image_height' ).val();
+		var newWidth = $( '#gcwp_add_image_width' ).val();
+		var newHeight = $( '#gcwp_add_image_height' ).val();
 		
 		var name = newWidth + "x" + newHeight;
-		var id = '#egwp_option_array[add_featured_image_size_array]';
+		var id = '#gcwp_option_array[add_featured_image_size_array]';
 		/***** JQUERY DOESN'T LIKE BRACKETS *****/
 		id = id.replace( '[','\\[' );
 		id = id.replace( ']','\\]' );
 		if ( !isNaN( newWidth ) && !isNaN( newHeight ) ) {
 			$( id ).append( '<option value="' + name + '" selected>' + name + '</option>' );
-			$( '#egwp_custom_image_sizes' ).append( "<p><span class='egwp_image_size'>" + name + "</span><span class='dashicons dashicons-trash egwp_delete_image_size_button'></span></p>" );
+			$( '#gcwp_custom_image_sizes' ).append( "<p><span class='gcwp_image_size'>" + name + "</span><span class='dashicons dashicons-trash gcwp_delete_image_size_button'></span></p>" );
 			addImageSizeClickHandler();
-			$( '#egwp_add_image_width' ).val('');
-			$( '#egwp_add_image_height' ).val('');
+			$( '#gcwp_add_image_width' ).val('');
+			$( '#gcwp_add_image_height' ).val('');
 		}
 		
 	});
 	
 	function addImageSizeClickHandler () {
-		$( '.egwp_delete_image_size_button' ).click( function() {
-			var toRemove = $( this ).prev( '.egwp_image_size' ).html();
-			var id = '#egwp_option_array[add_featured_image_size_array]';
+		$( '.gcwp_delete_image_size_button' ).click( function() {
+			var toRemove = $( this ).prev( '.gcwp_image_size' ).html();
+			var id = '#gcwp_option_array[add_featured_image_size_array]';
 			/***** JQUERY DOESN'T LIKE BRACKETS *****/
 			id = id.replace( '[','\\[' );
 			id = id.replace( ']','\\]' );
@@ -258,12 +258,12 @@ jQuery( document ).ready(function ( $ ) {
 	/***** LOAD CUSTOM IMAGE SIZES FRONT END DISPLAY *****/
 	
 	function loadCustomImageSizes() {
-		var id = '#egwp_option_array[add_featured_image_size_array]';
+		var id = '#gcwp_option_array[add_featured_image_size_array]';
 		/***** JQUERY DOESN'T LIKE BRACKETS *****/
 		id = id.replace( '[','\\[' );
 		id = id.replace( ']','\\]' );
 		$( id ).children().each(function() {
-			$( '#egwp_custom_image_sizes' ).append( "<p><span class='egwp_image_size'>" + $( this ).val() + "</span><span class='dashicons dashicons-trash egwp_delete_image_size_button'></span></p>" );
+			$( '#gcwp_custom_image_sizes' ).append( "<p><span class='gcwp_image_size'>" + $( this ).val() + "</span><span class='dashicons dashicons-trash gcwp_delete_image_size_button'></span></p>" );
 			
 		});
 		addImageSizeClickHandler();
@@ -271,8 +271,8 @@ jQuery( document ).ready(function ( $ ) {
 	
 	/***** ENABLE THE UPLOAD BUTTON ONCE A FILE IS SELECTED *****/
 	
-	$( '#egwp_import_setting_file' ).change( function() {
-        $( '#egwp_import' ).removeAttr('disabled');
+	$( '#gcwp_import_setting_file' ).change( function() {
+        $( '#gcwp_import' ).removeAttr('disabled');
     });
 	
 
