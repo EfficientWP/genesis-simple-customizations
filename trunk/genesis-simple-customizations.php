@@ -222,7 +222,7 @@ add_action( 'wp_ajax_gcwp_set_current_tab', 'gcwp_set_current_tab' );
 /***** CHANGE THE WP MEDIA UPLOADER'S TEXT "INSERT INTO POST" TO "USE THIS IMAGE" *****/
 
 function gcwp_change_insert_post_text( $safe_text, $text ) {
-    return str_replace( __( 'Insert into Post' ), __( 'Use this image' ), $text );
+	return str_replace( __( 'Insert into Post' ), __( 'Use this image' ), $text );
 }
 add_filter( 'esc_attr', 'gcwp_change_insert_post_text', 10, 2 );
 
@@ -339,7 +339,7 @@ function gcwp_media_library_callback( $args ) {
 		$value = $options[ $option_name ];
 	}
 	
-	$html = "<input type='text' class='gcwp_text' id='egwp_option_array[$option_name]'  name='egwp_option_array[$option_name]' value='$value'/>";
+	$html = "<input type='text' class='gcwp_text' id='egwp_option_array[$option_name]' name='egwp_option_array[$option_name]' value='$value'/>";
 	$html .= "<input class='egwp-upload-button button' type='button' value='" . __( 'Upload Image', 'genesis-simple-customizations' ) . "' />";
 	echo $html;
 }
@@ -440,7 +440,7 @@ function gcwp_radio_featured_image_callback( $args ) {
 	$asset_dir = $plugin_dir . 'assets/';
 	
 	$layouts = array(
-		''  => $asset_dir . 'disabled.png',
+		'' => $asset_dir . 'disabled.png',
 		'top' => $asset_dir . 'top.png',
 		'top-center' => $asset_dir . 'top-center.png',
 		'top-top' => $asset_dir . 'top-top.png',
@@ -513,15 +513,31 @@ function gcwp_main_page_callback() {
 	/***** SEND CURRENT TAB AND AJAX URL DATA TO JS *****/
 
 	$js_data = array(	
-		'ajax_url'  => admin_url('admin-ajax.php'),	
+		'ajax_url' => admin_url('admin-ajax.php'),	
 		'current_tab' => empty( $current_tab ) ? '' : $current_tab,
 		'user_id' => get_current_user_id(),
 	);
 
 	wp_localize_script( 'gcwp_admin_js', 'gcwp_data', $js_data );
 	?>
+	<h1><?php _e( 'Genesis Customizations', 'genesis-simple-customizations' ) ?></h1>
+
+	<div id='gcwp_sidebar'>
+		<h3>Upgrade To Premium</h3>
+
+		<ul>
+			<li><div class="dashicons dashicons-yes"></div> Feature</li>
+			<li><div class="dashicons dashicons-yes"></div> Feature</li>
+			<li><div class="dashicons dashicons-yes"></div> Feature</li>
+			<li><div class="dashicons dashicons-yes"></div> Feature</li>
+		</ul>
+
+		<p>
+			<a href="https://efficientwp.com/" target="_blank" class="button button-primary button-large">Upgrade Now</a>
+		</p> 
+	</div>
 	<div id='gcwp_main_page'>
-		<h1><?php _e( 'Genesis Customizations', 'genesis-simple-customizations' ) ?></h1>
+		
 		<form method='post' action='options.php' id='gcwp_main_form' style='display:none;'>
 	
 			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ) ?>' />
@@ -599,7 +615,7 @@ function gcwp_main_page_callback() {
 			<br>
 			<input name='submit' type='submit' id='submit_bottom' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ); ?>' /> <input name='gcwp_reset' type='button' id='gcwp_reset' class='button-secondary' value='<?php _e( 'Reset All', 'genesis-simple-customizations' ) ?>' />
 		</form>
-   </div>
+	</div>
 <?php }
 
 /***** EXECUTE CUSTOMIZATIONS ON GENESIS_INIT HOOK *****/
@@ -792,13 +808,13 @@ function gcwp_genesis_init() {
 	if ( !empty( $options[ 'custom_next_archive_label' ] ) AND function_exists( 'gcwp_archive_next_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
-		update_option( 'genesis-settings',  $genesis_options );
+		update_option( 'genesis-settings', $genesis_options );
 		add_filter( 'genesis_next_link_text', 'gcwp_archive_next_text' );
 	}		
 	if ( !empty( $options[ 'custom_previous_archive_label' ] ) AND function_exists( 'gcwp_archive_prev_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
-		update_option( 'genesis-settings',  $genesis_options );
+		update_option( 'genesis-settings', $genesis_options );
 		add_filter( 'genesis_prev_link_text', 'gcwp_archive_prev_text' );
 	}			
 }
@@ -1022,7 +1038,7 @@ function gcwp_add_genesis_author_boxes( $text ) {
 
 function gcwp_custom_avatar_size() {
 	$options = get_option( 'egwp_option_array' );
-    return intval( $options[ 'custom_avatar_size' ] );
+	return intval( $options[ 'custom_avatar_size' ] );
 
 }
 
@@ -1051,8 +1067,8 @@ function gcwp_custom_favicon( $favicon_url ) {
 function gcwp_custom_gravatar( $avatar_defaults ) {
 	$options = get_option( 'egwp_option_array' );
 	$avatar_url = $options[ 'custom_gravatar_url' ];
-    $avatar_defaults[$avatar_url] = "Genesis Customizations Custom Gravatar";
-    return $avatar_defaults;
+	$avatar_defaults[$avatar_url] = "Genesis Customizations Custom Gravatar";
+	return $avatar_defaults;
 }
 
 /***** ADD NEW FEATURED IMAGE SIZE *****/
@@ -1064,7 +1080,7 @@ function gcwp_admin_custom_sizes( $sizes ) {
 		$name = 'egwp-custom-' . $size;
 		$sizes[ $name ] = 'Custom (' . $size . ')';
 	}
-    return $sizes;
+	return $sizes;
 }
 
 /***** ADD CUSTOM IMAGE SIZES FROM SAVED ARRAY *****/
@@ -1084,7 +1100,7 @@ function gcwp_add_custom_image_sizes( $types ) {
 
 function gcwp_upgrade_check() {
 	$old_options = array (
-		'ewp_gsc_remove_post_info'  => 'remove_post_info',
+		'ewp_gsc_remove_post_info' => 'remove_post_info',
 		'ewp_gsc_remove_post_meta' => 'remove_post_meta',
 		'ewp_gsc_remove_footer' => 'remove_footer',
 		'ewp_gsc_remove_edit_link' => 'remove_edit_link',
@@ -1135,7 +1151,7 @@ function gcwp_upgrade_check() {
 		
 		/***** CLEAN UP / REMOVE OLD KEYS FROM GENESIS OPTIONS TABLE *****/
 		
-		update_option( 'genesis-settings',  $genesis_options );
+		update_option( 'genesis-settings', $genesis_options );
 	}
 }
 /***** ADD PAGE OPTIONS *****/

@@ -1,5 +1,24 @@
 /***** EGWP ADMIN CSS *****/
 
+#gcwp_sidebar {
+	position: fixed;
+	right: 15px;
+	top: 55px;
+	box-sizing: border-box;
+	width: 200px;
+	background-color: white;
+	border: 1px solid #CCC;
+	text-align: center;
+	
+}
+@media screen and (max-width: 667px) {
+    #gcwp_sidebar {
+		position: initial;
+		margin: auto;
+	}
+}
+
+
 /***** TEXT *****/
 
 h1 {
