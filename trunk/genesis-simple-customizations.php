@@ -35,18 +35,9 @@ add_action ( 'init', 'gcwp_init' );
 
 function gcwp_deactivation () {
 
-	if ( is_plugin_active( 'easy-genesis-extras/easy-genesis-extras.php' ) ) {
-		add_action('update_option_active_plugins', 'gcwp_deactivation_extras');
+	if ( is_plugin_active( 'genesis-customizations-pro/genesis-customizations-pro.php' ) ) {
+		add_action('update_option_active_plugins', 'gcpwp_deactivate');
 	}
-	if ( is_plugin_active( 'easy-genesis-blog/easy-genesis-blog.php' ) ) {
-		add_action( 'update_option_active_plugins', 'gcwp_deactivation_blog');
-	} 
-	if ( is_plugin_active( 'easy-genesis-comments/easy-genesis-comments.php' ) ) {
-		add_action( 'update_option_active_plugins', 'gcwp_deactivation_comments');
-	} 
-	if ( is_plugin_active( 'easy-genesis-pages/easy-genesis-pages.php' ) ) {
-		add_action( 'update_option_active_plugins', 'gcwp_deactivation_pages');
-	} 
 }
 register_deactivation_hook( __FILE__, 'gcwp_deactivation' );
 
@@ -758,8 +749,8 @@ function gcwp_genesis_init() {
 		add_filter( 'avatar_defaults', 'gcwp_custom_gravatar' );
 		update_option( 'avatar_default', $options[ 'custom_gravatar_url' ] );
 	}	
-	if ( function_exists( 'gcwp_breadcrumb_args' ) ) {
-		add_filter( 'genesis_breadcrumb_args', 'gcwp_breadcrumb_args' );
+	if ( function_exists( 'gcpwp_breadcrumb_args' ) ) {
+		add_filter( 'genesis_breadcrumb_args', 'gcpwp_breadcrumb_args' );
 	}
 	if ( !empty( $options[ 'remove_header'] ) ) {
 		remove_action('genesis_header','genesis_do_header');
@@ -770,22 +761,22 @@ function gcwp_genesis_init() {
 	if ( !empty( $options[ 'remove_secondary_nav'] ) ) {
 		remove_action( 'genesis_after_header', 'genesis_do_subnav' );
 	}
-	if ( !empty( $options[ 'custom_back_to_top_text'] ) AND function_exists( 'gcwp_back_to_top_filter' ) ) {
-		add_filter( 'genesis_footer_backtotop_text', 'gcwp_back_to_top_filter' );
+	if ( !empty( $options[ 'custom_back_to_top_text'] ) AND function_exists( 'gcpwp_back_to_top_filter' ) ) {
+		add_filter( 'genesis_footer_backtotop_text', 'gcpwp_back_to_top_filter' );
 	}
-	if ( !empty( $options[ 'display_content_on_blog'] )AND function_exists( 'gcwp_add_content_to_blog' ) ) {
-		add_action ( 'genesis_loop', 'gcwp_add_content_to_blog', 1 );
+	if ( !empty( $options[ 'display_content_on_blog'] )AND function_exists( 'gcpwp_add_content_to_blog' ) ) {
+		add_action ( 'genesis_loop', 'gcpwp_add_content_to_blog', 1 );
 	}
-	if ( !empty( $options[ 'custom_nav_html_before'] ) AND function_exists( 'gcwp_add_nav_html_before' ) ) {
-		add_filter( 'genesis_nav_items', 'gcwp_add_nav_html_before' );
-		add_filter( 'wp_nav_menu_items', 'gcwp_add_nav_html_before' );
+	if ( !empty( $options[ 'custom_nav_html_before'] ) AND function_exists( 'gcpwp_add_nav_html_before' ) ) {
+		add_filter( 'genesis_nav_items', 'gcpwp_add_nav_html_before' );
+		add_filter( 'wp_nav_menu_items', 'gcpwp_add_nav_html_before' );
 	}
-	if ( !empty( $options[ 'custom_nav_html_after'] ) AND function_exists( 'gcwp_add_nav_html_after' ) ) {
-		add_filter( 'genesis_nav_items', 'gcwp_add_nav_html_after' );
-		add_filter( 'wp_nav_menu_items', 'gcwp_add_nav_html_after' );
+	if ( !empty( $options[ 'custom_nav_html_after'] ) AND function_exists( 'gcpwp_add_nav_html_after' ) ) {
+		add_filter( 'genesis_nav_items', 'gcpwp_add_nav_html_after' );
+		add_filter( 'wp_nav_menu_items', 'gcpwp_add_nav_html_after' );
 	}
-	if ( !empty( $options[ 'add_post_navigation'] ) AND function_exists( 'gcwp_prev_next_post_nav' ) ) {
-		add_action( 'genesis_entry_footer', 'gcwp_prev_next_post_nav' );
+	if ( !empty( $options[ 'add_post_navigation'] ) AND function_exists( 'gcpwp_prev_next_post_nav' ) ) {
+		add_action( 'genesis_entry_footer', 'gcpwp_prev_next_post_nav' );
 	}	
 	if ( !empty( $options[ 'custom_breadcrumb_location'] ) ) {
 		remove_action( 'genesis_before_loop', 'genesis_do_breadcrumbs' );
@@ -805,17 +796,17 @@ function gcwp_genesis_init() {
 			add_action( $hook, 'genesis_do_subnav' );
 		}
 	}
-	if ( !empty( $options[ 'custom_next_archive_label' ] ) AND function_exists( 'gcwp_archive_next_text' ) ) {
+	if ( !empty( $options[ 'custom_next_archive_label' ] ) AND function_exists( 'gcpwp_archive_next_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
 		update_option( 'genesis-settings', $genesis_options );
-		add_filter( 'genesis_next_link_text', 'gcwp_archive_next_text' );
+		add_filter( 'genesis_next_link_text', 'gcpwp_archive_next_text' );
 	}		
-	if ( !empty( $options[ 'custom_previous_archive_label' ] ) AND function_exists( 'gcwp_archive_prev_text' ) ) {
+	if ( !empty( $options[ 'custom_previous_archive_label' ] ) AND function_exists( 'gcpwp_archive_prev_text' ) ) {
 		$genesis_options = get_option ( 'genesis-settings' );
 		$genesis_options[ 'posts_nav' ] = 'prev-next';
 		update_option( 'genesis-settings', $genesis_options );
-		add_filter( 'genesis_prev_link_text', 'gcwp_archive_prev_text' );
+		add_filter( 'genesis_prev_link_text', 'gcpwp_archive_prev_text' );
 	}			
 }
 
