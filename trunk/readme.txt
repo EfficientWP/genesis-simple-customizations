@@ -1,12 +1,12 @@
-=== Easy Genesis (formerly Genesis Simple Customizations) ===
+=== Genesis Customizations ===
 
 Contributors: Doug Yuen
 Author URI: http://efficientwp.com
 Plugin URI: http://efficientwp.com/products/easy-genesis
 Tags: genesis, genesiswp, studiopress, customize, customization, hook, functions, primary navigation, secondary navigation, header, favicon, post info, post meta, footer, edit link, featured image, search box, search button, read more, google fonts, after post, shortcode, genesis favicon, favicon, gravatar, image size
 Requires at least: 4.0
-Tested up to: 4.4.2
-Stable tag: trunk
+Tested up to: 4.6.1
+Stable tag: 2.4
 License: GPLv2 or later
 
 Easily make many customizations and setting changes to your Genesis-powered site, without having to write custom code.
@@ -97,6 +97,9 @@ Manual install:
 1. The Easy Genesis plugin panel.
 
 == Changelog ==
+
+= Genesis Customizations 2.4 =
+TODO: UPDATE CHANGELOG
 
 = Easy Genesis 2.3 =
 * Fixed deprecated function bug causing conflict with Beaver Builder
