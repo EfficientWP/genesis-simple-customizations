@@ -52,10 +52,10 @@ h3 {
 #submit {
 	margin: 20px 20px 20px 0;
 }
-#egwp_reset {
+#gcwp_reset {
 	margin: 0 10px;
 }
-.egwp_delete_image_size_button {
+.gcwp_delete_image_size_button {
 	cursor: pointer;
 	color: #e74c3c;
 }
@@ -68,13 +68,13 @@ h3 {
 input[type=checkbox] {
 	visibility: hidden;
 }
-#egwp_add_image_width, #egwp_add_image_height {
+#gcwp_add_image_width, #gcwp_add_image_height {
 	width: 100px;
 }
-#egwp_add_image_type {
+#gcwp_add_image_type {
 	margin-left: 5px;
 }
-input[type=radio].egwp_radio {
+input[type=radio].gcwp_radio {
 	display: none;
 }
 .egwp-layout-label {
@@ -90,13 +90,13 @@ input[type=radio].egwp_radio {
 .egwp-layout-label-selected {
 	outline: 2px solid #3498db;
 }
-.egwp_select {
+.gcwp_select {
 
 }
-.egwp_text {
+.gcwp_text {
 	width: 250px;
 }
-.egwp_checkbox {
+.gcwp_checkbox {
 	width: 80px;
 	height: 26px;
 	background: #F1F1F1;
@@ -109,7 +109,7 @@ input[type=radio].egwp_radio {
 	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
 }
-.egwp_checkbox:after {
+.gcwp_checkbox:after {
 	content: 'OFF';
 	font: 12px/26px Arial, sans-serif;
 	color: #FFF;
@@ -119,7 +119,7 @@ input[type=radio].egwp_radio {
 	font-weight: bold;
 	text-shadow: 1px 1px 0px rgba(255,255,255,.15);
 }
-.egwp_checkbox:before {
+.gcwp_checkbox:before {
 	content: 'ON';
 	font: 12px/26px Arial, sans-serif;
 	color: #FFF;
@@ -128,7 +128,7 @@ input[type=radio].egwp_radio {
 	z-index: 0;
 	font-weight: bold;
 }
-.egwp_checkbox label {
+.gcwp_checkbox label {
 	display: block;
 	width: 34px;
 	height: 20px;
@@ -156,7 +156,7 @@ input[type=radio].egwp_radio {
 	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
 }
-.egwp_checkbox input[type=checkbox]:checked + label {
+.gcwp_checkbox input[type=checkbox]:checked + label {
 	left: 43px;
 }
 
