@@ -1,0 +1,332 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Genesis Simple Customizations en español\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-07 10:56+0100\n"
+"PO-Revision-Date: 2016-04-07 10:56+0100\n"
+"Last-Translator: PNTE <blogs@educacion.navarra.es>\n"
+"Language-Team: PNTE <blogs@educacion.navarra.es>\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.7\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
+"esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: genesis-simple-customizations.php:24
+msgid "Unauthorized Access!"
+msgstr "Acceso no autorizado"
+
+#: genesis-simple-customizations.php:60
+msgid "Insert into Post"
+msgstr "Insertar en la entrada"
+
+#: genesis-simple-customizations.php:60
+msgid "Use this image"
+msgstr "Utilizar esta imagen"
+
+#: genesis-simple-customizations.php:83
+msgid "This plugin requires the Genesis theme/framework."
+msgstr "Este plugin require el framework Genesis."
+
+#: genesis-simple-customizations.php:113 genesis-simple-customizations.php:130
+msgid "Easy Genesis"
+msgstr "Génesis fácil"
+
+#: genesis-simple-customizations.php:148
+msgid "Basic Settings"
+msgstr "Configuración básica"
+
+#: genesis-simple-customizations.php:162
+msgid "Remove \"(Edit)\" Link from Frontend"
+msgstr "Eliminar el enlace \"(Editar)\" del frontend."
+
+#: genesis-simple-customizations.php:163
+msgid "Display Featured Image on Pages"
+msgstr "Mostrar las imágenes destacadas en las páginas"
+
+#: genesis-simple-customizations.php:164
+msgid "Display Featured Image on Posts"
+msgstr "Mostrar las imágenes destacadas en las entradas"
+
+#: genesis-simple-customizations.php:165
+msgid "Custom Search Box Text"
+msgstr "Texto personalizado de la caja de búsqueda."
+
+#: genesis-simple-customizations.php:165
+msgid "Search this website ..."
+msgstr "Buscar en este sitio web..."
+
+#: genesis-simple-customizations.php:166
+msgid "Custom Search Button Text"
+msgstr "Texto personalizado del botón de búsqueda."
+
+#: genesis-simple-customizations.php:166
+msgid "Search"
+msgstr "Buscar"
+
+#: genesis-simple-customizations.php:167
+msgid "Custom \"Read More\" Text"
+msgstr "Texto personalizado para la etiqueta \"More\""
+
+#: genesis-simple-customizations.php:167
+msgid "Read more..."
+msgstr "Continuar leyendo"
+
+#: genesis-simple-customizations.php:168
+msgid "Custom After Post Code (shortcodes allowed)"
+msgstr "Código personalizado después de las entradas (se permiten shortcodes)"
+
+#: genesis-simple-customizations.php:169
+msgid "Remove Post Info (above content)"
+msgstr "Eliminar la información de las entradas (por encima del contenido)"
+
+#: genesis-simple-customizations.php:170
+msgid "Remove Post Meta (below content)"
+msgstr "Eliminar los metadatos de las entradas (por debajo del contenido)"
+
+#: genesis-simple-customizations.php:171
+msgid "Remove Footer Entirely"
+msgstr "Eliminar completamente el pie de página."
+
+#: genesis-simple-customizations.php:172
+msgid "Remove Secondary Navigation from Top of Header"
+msgstr ""
+"Eliminar el menú de navegación secundario de la parte superior de la cabecera"
+
+#: genesis-simple-customizations.php:173
+msgid "Add Secondary Navigation to Bottom of Header"
+msgstr ""
+"Añadir el menú de navegación secundario a la parte inferior de la cabecera"
+
+#: genesis-simple-customizations.php:174
+msgid "Remove Genesis Favicon"
+msgstr "Eliminar el favicono del tema Genesis."
+
+#: genesis-simple-customizations.php:175
+msgid "Custom Favicon (URL)"
+msgstr "Favicono personalizado (URL)"
+
+#: genesis-simple-customizations.php:176
+msgid "Custom Default Gravatar (URL)"
+msgstr "Gravatar por defecto personalizado (URL)"
+
+#: genesis-simple-customizations.php:177
+msgid "Custom Google Fonts (URL)"
+msgstr "Fuentes de Google personalizadas (URL)"
+
+#: genesis-simple-customizations.php:178
+msgid "Add Custom Image Sizes"
+msgstr "Añadir tamaños de imagen personalizados"
+
+#: genesis-simple-customizations.php:299
+msgid "Upload Image"
+msgstr "Subir una imagen"
+
+#: genesis-simple-customizations.php:335
+msgid "Hold control key to select more than one."
+msgstr "Mantén pulsada la tecla Ctrl para seleccionar más de uno."
+
+#: genesis-simple-customizations.php:438
+msgid "Width (px)"
+msgstr "Anchura (px)"
+
+#: genesis-simple-customizations.php:439
+msgid "Height (px)"
+msgstr "Altura (px)"
+
+#: genesis-simple-customizations.php:440
+msgid "Add"
+msgstr "Añadir"
+
+#: genesis-simple-customizations.php:483 genesis-simple-customizations.php:569
+msgid "Save Changes"
+msgstr "Guardar los cambios"
+
+#: genesis-simple-customizations.php:486
+msgid "Main"
+msgstr "Principal"
+
+#: genesis-simple-customizations.php:487 genesis-simple-customizations.php:520
+msgid "Extensions"
+msgstr "Extensiones"
+
+#: genesis-simple-customizations.php:488
+msgid "Import/Export"
+msgstr "Importar o exportar"
+
+#: genesis-simple-customizations.php:493
+msgid "Import/Export Settings"
+msgstr "Importar o exportar la configuración"
+
+#: genesis-simple-customizations.php:501
+msgid "Select an Easy Genesis settings file and click the Import button."
+msgstr ""
+"Selecciona un fichero de configuración de Easy Gensis y haz clic en el botón "
+"de importación."
+
+#: genesis-simple-customizations.php:504
+msgid "Import"
+msgstr "Importar"
+
+#: genesis-simple-customizations.php:512
+msgid "Export"
+msgstr "Exportar"
+
+#: genesis-simple-customizations.php:525
+msgid "Pages"
+msgstr "Páginas"
+
+#: genesis-simple-customizations.php:526
+msgid "Free Extension"
+msgstr "Extensión gratuita"
+
+#: genesis-simple-customizations.php:527
+msgid ""
+"This extension allows you to universally remove titles across your pages, "
+"and display the featured image (if there is one) at the top of your pages. "
+"You may need to write custom CSS to style the featured image the way you "
+"want."
+msgstr ""
+"Esta extensión permite eliminar de forma universal los títulos en las "
+"páginas, y muestra la imagen destacada (siempre que exista), en la parte "
+"superior de las páginas. Es posible que tengas que crear estilos CSS "
+"personalizados para mostrar las imágenes destacadas tal como quieras."
+
+#: genesis-simple-customizations.php:528 genesis-simple-customizations.php:534
+#: genesis-simple-customizations.php:540
+msgid "Learn More"
+msgstr "Más información"
+
+#: genesis-simple-customizations.php:531
+msgid "Extras"
+msgstr "Extras"
+
+#: genesis-simple-customizations.php:532 genesis-simple-customizations.php:538
+msgid "Premium Extension"
+msgstr "Extensión Premium"
+
+#: genesis-simple-customizations.php:533
+msgid ""
+"This extension allows you to customize the display of your navigation menus, "
+"add content to the beginning and end of your navigation, edit your footer, "
+"force sidebar layouts for different page templates, and customize your "
+"breadcrumbs."
+msgstr ""
+"Esta extensión permite personalizar la presentación de los menús de "
+"navegación, y añadir contenido al principio y al final del menú de "
+"navegación, editar el pie de página, forzar los diseños de las barras "
+"laterales para diferentes plantillas de páginas, y personalizar la ruta de "
+"navegación."
+
+#: genesis-simple-customizations.php:537
+msgid "Blog"
+msgstr "Blog"
+
+#: genesis-simple-customizations.php:539
+msgid ""
+"This extension allows you to make changes to your post info, post meta, in-"
+"post navigation text, archive navigation text, display featured images, "
+"display content above your blog page template, and more."
+msgstr ""
+"Esta extensión permite realizar cambios en la información de las entradas, "
+"en los metadatos de las entradas, en el texto de navegación del interior de "
+"las entradas, en el texto de navegación de las páginas de archivo, mostrar "
+"las imágenes destacadas, mostrar el contenido por encima de la plantilla de "
+"página, etc."
+
+#: genesis-simple-customizations.php:545
+msgid "Coming Soon:"
+msgstr "En breve"
+
+#: genesis-simple-customizations.php:547
+msgid "- Comments extension"
+msgstr "- Extensión para comentarios"
+
+#: genesis-simple-customizations.php:548
+msgid "- Featured image styling in the Pages and Blog extensions"
+msgstr ""
+"- Estilos para las imágenes destacadas en las extensiones de páginas y blog"
+
+#: genesis-simple-customizations.php:558
+msgid "Available Footer Shortcodes:"
+msgstr "Shortcodes disponibles para el pie de página:"
+
+#: genesis-simple-customizations.php:562
+msgid "Available Post Shortcodes:"
+msgstr "Shortcodes disponibles para las entradas:"
+
+#: genesis-simple-customizations.php:569
+msgid "Reset All"
+msgstr "Reiniciar todo"
+
+#: genesis-simple-customizations.php:583 genesis-simple-customizations.php:589
+msgid "Could not verify user, try logging in again. \n"
+msgstr ""
+"No se ha podido verificar el usuario; prueba a iniciar sesión de nuevo. \n"
+
+#: genesis-simple-customizations.php:603
+msgid "m-d-Y"
+msgstr "d-m-Y"
+
+#: genesis-simple-customizations.php:614
+msgid "Please upload a file to import"
+msgstr "Por favor, sube un fichero para importar"
+
+#: genesis-simple-customizations.php:622
+msgid "Imported Settings \n"
+msgstr "La configuración ha sido importada \n"
+
+#: genesis-simple-customizations.php:624
+msgid "Failed to Import Settings \n"
+msgstr "Se ha producido un fallo al importar la configuración \n"
+
+#: genesis-simple-customizations.php:627
+msgid "Invalid file type \n"
+msgstr "Tipo de fichero no válido \n"
+
+#: genesis-simple-customizations.php:1180
+msgid "Imported Options from Genesis Simple Customizations"
+msgstr "Opciones importadas desde el plugin Genesis Simple Customizations"
+
+#~ msgid "Display Featured Image Above Page Content with H1 Centered Inside"
+#~ msgstr ""
+#~ "Mostrar la imagen destacada por encima del contenido de la página, con "
+#~ "una etiqueta h1 centrada en el interior."
+
+#~ msgid "Display Featured Image Above Page Content with Nothing Inside"
+#~ msgstr ""
+#~ "Mostrar la imagen destacada por encima del contenido de la página, con "
+#~ "nada en el interior."
+
+#~ msgid "Display Featured Image Above Post Content with H1 Centered Inside"
+#~ msgstr ""
+#~ "Mostrar la imagen destacada por encima del contenido de la entrada, con "
+#~ "una etiqueta h1 centrada en el interior."
+
+#~ msgid "Display Category Descriptions Above Category Archives"
+#~ msgstr ""
+#~ "Mostrar la descripción de la categoría por encima de las páginas de "
+#~ "archivo de las categorías."
+
+#~ msgid "Custom More Tag \"Read More\" Link"
+#~ msgstr ""
+#~ "Enlace personalizado de \"Continuar leyendo\" para la etiqueta \"more\"."
+
+#~ msgid "Custom Show Content Limit \"Read More\" Link"
+#~ msgstr ""
+#~ "Enlace personalizado de \"Continuar leyendo\" para el límite de mostrar "
+#~ "contenido"
+
+#~ msgid ""
+#~ "Custom Google Fonts URL (e.g. http://fonts.googleapis.com/css?family=Lato"
+#~ "%3A400)"
+#~ msgstr ""
+#~ "URL personalizada de Google Fonts (por ejemplo, http://fonts.googleapis."
+#~ "com/css?family=Lato%3A400)."

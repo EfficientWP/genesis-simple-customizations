@@ -13,7 +13,7 @@ $egwp_version = '2.3';
 
 /***** BASIC SECURITY *****/
 
-defined( 'ABSPATH' ) or die( 'Unauthorized Access!' );
+defined( 'ABSPATH' ) or die( __( 'Unauthorized Access!', 'genesis-simple-customizations' ) );
 
 /***** BACK-END HOOKS *****/
 
@@ -72,7 +72,7 @@ if ( get_template() == 'genesis' ) {
 function egwp_activation() {
 	if ( get_template() != 'genesis' ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( 'This plugin requires the Genesis theme/framework.' );
+		wp_die( __( 'This plugin requires the Genesis theme/framework.', 'genesis-simple-customizations' ) );
 	}	
 	egwp_upgrade_check();
 }
@@ -102,7 +102,7 @@ function egwp_deactivation () {
 /***** ADD MENUS TO ADMIN BAR *****/
 
 function egwp_add_menus() {
-	$handle = add_menu_page( 'Easy Genesis', 'Easy Genesis', 'edit_themes', 'egwp_easy_genesis', 'egwp_main_page_callback', 'dashicons-admin-generic', '58.9950000000121' );
+	$handle = add_menu_page( __( 'Easy Genesis', 'genesis-simple-customizations' ), __( 'Easy Genesis', 'genesis-simple-customizations' ), 'edit_themes', 'egwp_easy_genesis', 'egwp_main_page_callback', 'dashicons-admin-generic', '58.9950000000121' );
 	/***** MAYBE ADD A TOOLBAR BUTTON, COULDNT GET IT TO SHOW ON THE FRONT END - ONLY SHOWS ON ADMIN PAGES - CONFLICT W/ MULTISITE? *****/
 	//add_action( 'wp_before_admin_bar_render', 'egwp_toolbar_button' );
 	add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'egwp_plugin_action_links' );
@@ -119,7 +119,7 @@ function egwp_toolbar_button() {
 	
 	$args = array(
 		'id'    => 'egwp',
-		'title' => 'Easy Genesis',
+		'title' => __( 'Easy Genesis', 'genesis-simple-customizations' ),
 		'href'  => $url,
 		'meta'  => array( 'class' => 'egwp-toolbar' )
 	);
@@ -137,7 +137,7 @@ function egwp_register_settings() {
 			
 	/***** ADD AND REGISTER SETTINGS BOXES AND FIELDS *****/
 	
-	add_settings_section( 'egwp_basic_setting_section', 'Basic Settings', 'egwp_section_callback', 'egwp_main_settings_page' );
+	add_settings_section( 'egwp_basic_setting_section', __( 'Basic Settings', 'genesis-simple-customizations' ), 'egwp_section_callback', 'egwp_main_settings_page' );
 	
 	/***** MAKE SURE OUR ARRAY EXISTS *****/
 	
@@ -151,23 +151,23 @@ function egwp_register_settings() {
 	
 	$egwp_options_array = array(	
 		/***** MAIN TAB *****/
-		array( 'remove_edit_link', 'Remove "(Edit)" Link from Frontend', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		array( 'featured_image_pages', 'Display Featured Image on Pages', 'egwp_radio_featured_image_callback', 'egwp_basic_setting_section' ),
-		array( 'featured_image_posts', 'Display Featured Image on Posts', 'egwp_radio_featured_image_callback', 'egwp_basic_setting_section' ),
-		array( 'custom_search_box_text', 'Custom Search Box Text', 'egwp_text_box_callback', 'egwp_basic_setting_section', 'Search this website ...' ),	
-		array( 'custom_search_button_text', 'Custom Search Button Text', 'egwp_text_box_callback', 'egwp_basic_setting_section', 'Search' ),
-		array( 'custom_read_more_text', 'Custom "Read More" Text', 'egwp_text_box_callback', 'egwp_basic_setting_section', 'Read more...' ),
-		array( 'custom_after_post_text', 'Custom After Post Code (shortcodes allowed)', 'egwp_text_box_callback', 'egwp_basic_setting_section' ),
-		array( 'remove_post_info', 'Remove Post Info (above content)', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		array( 'remove_post_meta', 'Remove Post Meta (below content)', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),	
-		array( 'remove_footer', 'Remove Footer Entirely', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),		
-		array( 'remove_subnav_from_top_of_header', 'Remove Secondary Navigation from Top of Header', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		array( 'add_subnav_to_bottom_of_header', 'Add Secondary Navigation to Bottom of Header', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
-		array( 'remove_favicon', 'Remove Genesis Favicon', 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),	
-		array( 'custom_favicon_url', 'Custom Favicon (URL)', 'egwp_media_library_callback', 'egwp_basic_setting_section' ),	
-		array( 'custom_gravatar_url', 'Custom Default Gravatar (URL)', 'egwp_media_library_callback', 'egwp_basic_setting_section' ),				
-		array( 'custom_google_fonts_text', 'Custom Google Fonts (URL)', 'egwp_text_box_callback', 'egwp_basic_setting_section' ),	
-		array( 'add_featured_image_size_array', 'Add Custom Image Sizes', 'egwp_custom_image_sizes_callback', 'egwp_basic_setting_section' ),
+		array( 'remove_edit_link', __( 'Remove "(Edit)" Link from Frontend', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
+		array( 'featured_image_pages', __( 'Display Featured Image on Pages', 'genesis-simple-customizations' ), 'egwp_radio_featured_image_callback', 'egwp_basic_setting_section' ),
+		array( 'featured_image_posts', __( 'Display Featured Image on Posts', 'genesis-simple-customizations' ), 'egwp_radio_featured_image_callback', 'egwp_basic_setting_section' ),
+		array( 'custom_search_box_text', __( 'Custom Search Box Text', 'genesis-simple-customizations' ), 'egwp_text_box_callback', 'egwp_basic_setting_section', __('Search this website ...', 'genesis-simple-customizations') ),
+		array( 'custom_search_button_text', __( 'Custom Search Button Text', 'genesis-simple-customizations' ), 'egwp_text_box_callback', 'egwp_basic_setting_section', __('Search', 'genesis-simple-customizations') ),
+		array( 'custom_read_more_text', __( 'Custom "Read More" Text', 'genesis-simple-customizations' ), 'egwp_text_box_callback', 'egwp_basic_setting_section', __('Read more...', 'genesis-simple-customizations') ),
+		array( 'custom_after_post_text', __( 'Custom After Post Code (shortcodes allowed)', 'genesis-simple-customizations' ), 'egwp_text_box_callback', 'egwp_basic_setting_section' ),
+		array( 'remove_post_info', __( 'Remove Post Info (above content)', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
+		array( 'remove_post_meta', __( 'Remove Post Meta (below content)', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),	
+		array( 'remove_footer', __( 'Remove Footer Entirely', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),		
+		array( 'remove_subnav_from_top_of_header', __( 'Remove Secondary Navigation from Top of Header', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
+		array( 'add_subnav_to_bottom_of_header', __( 'Add Secondary Navigation to Bottom of Header', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),
+		array( 'remove_favicon', __( 'Remove Genesis Favicon', 'genesis-simple-customizations' ), 'egwp_checkbox_callback', 'egwp_basic_setting_section' ),	
+		array( 'custom_favicon_url', __( 'Custom Favicon (URL)', 'genesis-simple-customizations' ), 'egwp_media_library_callback', 'egwp_basic_setting_section' ),	
+		array( 'custom_gravatar_url', __( 'Custom Default Gravatar (URL)', 'genesis-simple-customizations' ), 'egwp_media_library_callback', 'egwp_basic_setting_section' ),
+		array( 'custom_google_fonts_text', __( 'Custom Google Fonts (URL)', 'genesis-simple-customizations' ), 'egwp_text_box_callback', 'egwp_basic_setting_section' ),	
+		array( 'add_featured_image_size_array', __( 'Add Custom Image Sizes', 'genesis-simple-customizations' ), 'egwp_custom_image_sizes_callback', 'egwp_basic_setting_section' ),
 	);
 	
 	/***** FILTER SO OTHER EXTENSIONS CAN HOOK IN SETTINGS *****/
@@ -288,7 +288,7 @@ function egwp_media_library_callback( $args ) {
 	}
 	
 	$html = "<input type='text' class='egwp_text' id='egwp_option_array[$option_name]'  name='egwp_option_array[$option_name]' value='$value'/>";
-	$html .= "<input class='egwp-upload-button button' type='button' value='Upload Image' />";
+	$html .= "<input class='egwp-upload-button button' type='button' value='" . __( 'Upload Image', 'genesis-simple-customizations' ) . "' />";
 	echo $html;
 }
 
@@ -324,7 +324,7 @@ function egwp_multiselect_callback ( $args ) {
 	}					
 
 	$html .= '</select>';
-	$html .= "<br><label for='egwp_option_array[$option_name][]'><i>Hold control key to select more than one.</i></label>";
+	$html .= "<br><label for='egwp_option_array[$option_name][]'><i>" . __( 'Hold control key to select more than one.', 'genesis-simple-customizations' ) . "</i></label>";
 	echo $html;
 }
 
@@ -427,9 +427,9 @@ function egwp_custom_image_sizes_callback( $args ) {
 		$selected_options = array();
 	}
 
-	$html = "<input name='egwp_add_image_width' type='number' min='1' max='10000' id='egwp_add_image_width' placeholder='Width (px)'/> x ";
-	$html .= "<input name='egwp_add_image_height' type='number' min='1' max='10000' id='egwp_add_image_height' placeholder='Height (px)'/>";
-	$html .= "<input name='egwp_add_image_type' type='button' id='egwp_add_image_type' class='button-primary' value='Add' />";
+	$html = "<input name='egwp_add_image_width' type='number' min='1' max='10000' id='egwp_add_image_width' placeholder='" . __( 'Width (px)', 'genesis-simple-customizations' ) . "'/> x ";
+	$html .= "<input name='egwp_add_image_height' type='number' min='1' max='10000' id='egwp_add_image_height' placeholder='" . __( 'Height (px)', 'genesis-simple-customizations' ) . "'/>";
+	$html .= "<input name='egwp_add_image_type' type='button' id='egwp_add_image_type' class='button-primary' value='" . __( 'Add', 'genesis-simple-customizations' ) . "' />";
 	$html .= "<br><br><div id='egwp_custom_image_sizes'></div>";
 	$html .= "<br><select name='egwp_option_array[$option_name][]' id='egwp_option_array[$option_name]' multiple='multiple' hidden readonly'>";
 		
@@ -472,17 +472,17 @@ function egwp_main_page_callback() {
 		<h1>Easy Genesis</h1>
 		<form method='post' action='options.php' id='egwp_main_form' style='display:none;'>
 	
-			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e('Save Changes') ?>' />
+			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ) ?>' />
 
 			<h2 class='nav-tab-wrapper'>
-				<a class='nav-tab nav-tab-active' id='egwp_basic_setting_section_nav' href='#'>Main</a><?php do_action( 'egwp_menu' ); ?>
-				<a class='nav-tab' id='egwp_addons_section_nav' href='#'>Extensions</a>
-				<a class='nav-tab' id='egwp_import_export_setting_section_nav' href='#'>Import/Export</a>
+				<a class='nav-tab nav-tab-active' id='egwp_basic_setting_section_nav' href='#'><?php _e( 'Main', 'genesis-simple-customizations' ); ?></a><?php do_action( 'egwp_menu' ); ?>
+				<a class='nav-tab' id='egwp_addons_section_nav' href='#'><?php _e( 'Extensions', 'genesis-simple-customizations' ); ?></a>
+				<a class='nav-tab' id='egwp_import_export_setting_section_nav' href='#'><?php _e( 'Import/Export', 'genesis-simple-customizations' ); ?></a>
 			</h2>
 			
 			<!-- IMPORT/EXPORT SETTINGS 'PAGE' -->
 
-			<h2>Import/Export Settings</h2>
+			<h2><?php _e( 'Import/Export Settings', 'genesis-simple-customizations' ); ?></h2>
 			<input type='hidden' id='egwp_import_export_setting_section'>
 			<table class='form-table' id='egwp_import_export_setting_table'>
 				<tr>
@@ -490,10 +490,10 @@ function egwp_main_page_callback() {
 						<form method='post' enctype='multipart/form-data'>
 							<input type='file' name='import_file' id='egwp_import_setting_file'/>
 							<br>
-							<label for='import_file'><i>Select an Easy Genesis settings file and click the Import button.</i>
+							<label for='import_file'><i><?php _e( 'Select an Easy Genesis settings file and click the Import button.', 'genesis-simple-customizations' ) ?></i>
 							<br>
 							<br>
-							<input name='egwp_import' type='submit' id='egwp_import' class='button-secondary' value='<?php _e('Import') ?>' disabled />
+							<input name='egwp_import' type='submit' id='egwp_import' class='button-secondary' value='<?php _e( 'Import', 'genesis-simple-customizations' ) ?>' disabled />
 							<?php wp_nonce_field( 'egwp_import', 'egwp_nonce' ); ?>
 						</form>
 					</td>
@@ -501,7 +501,7 @@ function egwp_main_page_callback() {
 				<tr>
 					<td>
 						<form method='post'>
-							<input name='egwp_export' type='submit' id='egwp_export' class='button-secondary' value='<?php _e('Export') ?>' />
+							<input name='egwp_export' type='submit' id='egwp_export' class='button-secondary' value='<?php _e( 'Export', 'genesis-simple-customizations' ) ?>' />
 							<?php wp_nonce_field( 'egwp_export', 'egwp_nonce' ); ?>
 						</form>
 					</td>
@@ -509,35 +509,35 @@ function egwp_main_page_callback() {
 			</table>
 			
 			<!-- EXTENSIONS 'PAGE' -->
-			<h2>Extensions</h2>
+			<h2><?php _e( 'Extensions', 'genesis-simple-customizations' ) ?></h2>
 			<input type='hidden' id='egwp_addons_section'>
 			<table class="extensions-table" cellspacing="10" cellpadding="10">
 				<tr>
 					<td>
-						<h3>Pages</h3>
-						<p><b>Free Extension</b><br /></p>
-						<p>This extension allows you to universally remove titles across your pages, and display the featured image (if there is one) at the top of your pages. You may need to write custom CSS to style the featured image the way you want.<br /><br /></p>
-						<p><a class="cta-button" href="https://efficientwp.com/products/easy-genesis-pages" target="_blank">Learn More</a><br /></p>
+						<h3><?php _e( 'Pages', 'genesis-simple-customizations' ) ?></h3>
+						<p><b><?php _e( 'Free Extension', 'genesis-simple-customizations' ) ?></b><br /></p>
+						<p><?php _e( 'This extension allows you to universally remove titles across your pages, and display the featured image (if there is one) at the top of your pages. You may need to write custom CSS to style the featured image the way you want.', 'genesis-simple-customizations' ) ?><br /><br /></p>
+						<p><a class="cta-button" href="https://efficientwp.com/products/easy-genesis-pages" target="_blank"><?php _e( 'Learn More', 'genesis-simple-customizations' ) ?></a><br /></p>
 					</td>
 					<td>
-						<h3>Extras</h3>
-						<p><b>Premium Extension</b><br /></p>
-						<p>This extension allows you to customize the display of your navigation menus, add content to the beginning and end of your navigation, edit your footer, force sidebar layouts for different page templates, and customize your breadcrumbs.<br /><br /></p>
-						<p><a class="cta-button" href="https://efficientwp.com/downloads/easy-genesis-extras-extension" target="_blank">Learn More</a><br /></p>
+						<h3><?php _e( 'Extras', 'genesis-simple-customizations' ) ?></h3>
+						<p><b><?php _e( 'Premium Extension', 'genesis-simple-customizations' ) ?></b><br /></p>
+						<p><?php _e( 'This extension allows you to customize the display of your navigation menus, add content to the beginning and end of your navigation, edit your footer, force sidebar layouts for different page templates, and customize your breadcrumbs.', 'genesis-simple-customizations' ) ?><br /><br /></p>
+						<p><a class="cta-button" href="https://efficientwp.com/downloads/easy-genesis-extras-extension" target="_blank"><?php _e( 'Learn More', 'genesis-simple-customizations' ) ?></a><br /></p>
 					</td>
 					<td>
-						<h3>Blog</h3>
-						<p><b>Premium Extension</b><br /></p>
-						<p>This extension allows you to make changes to your post info, post meta, in-post navigation text, archive navigation text, display featured images, display content above your blog page template, and more.<br /><br /></p>
-						<p><a class="cta-button" href="https://efficientwp.com/downloads/easy-genesis-blog-extension" target="_blank">Learn More</a><br /></p>
+						<h3><?php _e( 'Blog', 'genesis-simple-customizations' ) ?></h3>
+						<p><b><?php _e( 'Premium Extension', 'genesis-simple-customizations' ) ?></b><br /></p>
+						<p><?php _e( 'This extension allows you to make changes to your post info, post meta, in-post navigation text, archive navigation text, display featured images, display content above your blog page template, and more.', 'genesis-simple-customizations' ) ?><br /><br /></p>
+						<p><a class="cta-button" href="https://efficientwp.com/downloads/easy-genesis-blog-extension" target="_blank"><?php _e( 'Learn More', 'genesis-simple-customizations' ) ?></a><br /></p>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="3">
-						<h3>Coming Soon:</h3>
+						<h3><?php _e( 'Coming Soon:', 'genesis-simple-customizations') ?></h3>
 						<ul>
-							<li>- Comments extension</li>
-							<li>- Featured image styling in the Pages and Blog extensions</li>
+							<li><?php _e( '- Comments extension', 'genesis-simple-customizations') ?></li>
+							<li><?php _e( '- Featured image styling in the Pages and Blog extensions', 'genesis-simple-customizations') ?></li>
 						</ul>
 					</td>
 				</tr>
@@ -547,18 +547,18 @@ function egwp_main_page_callback() {
 				do_settings_sections( 'egwp_main_settings_page' );
 			?>
 						
-			<h2 id='egwp_footer_shortcodes' style="margin: 2em 0;">Available Footer Shortcodes:<br /><br />
+			<h2 id='egwp_footer_shortcodes' style="margin: 2em 0;"><?php _e( 'Available Footer Shortcodes:', 'genesis-simple-customizations' ) ?><br /><br />
 				<p>[footer_copyright] [footer_childtheme_link] [footer_genesis_link] [footer_studiopress_link] [footer_wordpress_link] [footer_loginout]</p>
 			
 				
-			<h2 id='egwp_post_shortcodes' style="margin: 2em 0;">Available Post Shortcodes:<br /><br />
+			<h2 id='egwp_post_shortcodes' style="margin: 2em 0;"><?php _e( 'Available Post Shortcodes:', 'genesis-simple-customizations' ) ?><br /><br />
 				<p>[post_date] [post_time] [post_author] [post_author_link] [post_author_posts_link] [post_comments] [post_tags] [post_categories] [post_edit] [post_terms]</p>
 			</h2>
 			
 			<br>
 			<hr>
 			<br>
-			<input name='submit' type='submit' id='submit_bottom' class='button-primary' value='<?php _e('Save Changes') ?>' /> <input name='egwp_reset' type='button' id='egwp_reset' class='button-secondary' value='<?php _e('Reset All') ?>' />
+			<input name='submit' type='submit' id='submit_bottom' class='button-primary' value='<?php _e('Save Changes', 'genesis-simple-customizations' ) ?>' /> <input name='egwp_reset' type='button' id='egwp_reset' class='button-secondary' value='<?php _e( 'Reset All', 'genesis-simple-customizations' ) ?>' />
 		</form>
    </div>
 <?php }
@@ -572,13 +572,13 @@ function egwp_process_import_export () {
 	if ( !empty ( $_POST[ 'egwp_export' ] ) ) {
 		$verify = wp_verify_nonce( $_POST[ 'egwp_nonce' ], 'egwp_export' );
 		if ( !$verify ) {
-			$egwp_errors .= "Could not verify user, try logging in again. \n";
+			$egwp_errors .= __( 'Could not verify user, try logging in again.', 'genesis-simple-customizations' ) . '\n';
 			return;
 		}
 	} else if ( !empty ( $_POST[ 'egwp_import' ] ) ) {
 		$verify = wp_verify_nonce( $_POST[ 'egwp_nonce' ], 'egwp_import' );
 			if ( !$verify ) {
-			$egwp_errors .= "Could not verify user, try logging in again. \n";
+			$egwp_errors .= __( 'Could not verify user, try logging in again.', 'genesis-simple-customizations' ) . '\n';
 			return;
 		}
 	} else {
@@ -592,7 +592,7 @@ function egwp_process_import_export () {
 		
 		nocache_headers();
 		header( 'Content-Type: application/json; charset=utf-8' );
-		header( 'Content-Disposition: attachment; filename=egwp-settings-export-' . date( 'm-d-Y' ) . '.json' );
+		header( 'Content-Disposition: attachment; filename=egwp-settings-export-' . date( __( 'm-d-Y', 'genesis-simple-customizations' ) ) . '.json' );
 		header( "Expires: 0" );
 
 		echo json_encode( $options );
@@ -611,12 +611,12 @@ function egwp_process_import_export () {
 		if ( !empty($options[ 'egwp_version' ] ) ) {
 			$success = update_option( 'egwp_option_array', $options );
 			if ( $success ) {
-				$egwp_notices .= "Imported Settings \n";
+				$egwp_notices .= __( 'Imported Settings', 'genesis-simple-customizations') . '\n';
 			} else {
-				$egwp_errors .= "Failed to Import Settings \n";
+				$egwp_errors .= __( 'Failed to Import Settings', 'genesis-simple-customizations') . '\n';
 			}
 		} else {
-			$egwp_errors .= "Invalid file type \n";
+			$egwp_errors .= __( 'Invalid file type', 'genesis-simple-customizations') . '\n';
 		}
 	}
 	
@@ -1169,10 +1169,16 @@ function egwp_upgrade_check() {
 	if ( $new_options !== FALSE ) {
 		$success = update_option( 'egwp_option_array', $new_options );
 		global $egwp_notices;
-		$success ? $egwp_notices .= 'Imported Options from Genesis Simple Customizations' : "";
+		$success ? $egwp_notices .= __('Imported Options from Genesis Simple Customizations', 'genesis-simple-customizations' ) : '';
 		
 		/***** CLEAN UP / REMOVE OLD KEYS FROM GENESIS OPTIONS TABLE *****/
 		
 		update_option( 'genesis-settings',  $genesis_options );
 	}
 }
+
+// TRANSLATION
+function genesis_simple_customizations_load_textdomain() {
+	load_plugin_textdomain( 'genesis-simple-customizations', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
+}
+add_action( 'plugins_loaded', 'genesis_simple_customizations_load_textdomain' );
