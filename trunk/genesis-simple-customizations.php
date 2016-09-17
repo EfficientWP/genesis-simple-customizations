@@ -1,6 +1,6 @@
 <?php
 /*****
-Plugin Name: Easy Genesis (formerly Genesis Simple Customizations)
+Plugin Name: Genesis Customizations (formerly Easy Genesis)
 Plugin URI: http://efficientwp.com/plugins/easy-genesis
 Description: Easily make certain customizations to your Genesis-powered site in the Genesis Theme Settings menu. You must be using the Genesis theme framework.
 Version: 2.4
@@ -20,7 +20,9 @@ defined( 'ABSPATH' ) or die( __( 'Unauthorized Access!', 'genesis-simple-customi
 function gcwp_activation() {
 	if ( get_template() != 'genesis' ) {
 		deactivate_plugins( plugin_basename( __FILE__ ) );
-		wp_die( __( 'This plugin requires the Genesis theme framework.', 'genesis-simple-customizations' ) );
+		wp_die( __( 'This plugin requires the Genesis theme framework.', 'genesis-simple-customizations' ) .
+			"<p><a class='button button-large' href='" . admin_url( 'plugins.php' ) . "'>" . __( 'Back to plugins page', 'genesis-simple-customizations' ) . '</a></p>'
+		);
 	}	
 	gcwp_upgrade_check();
 }
@@ -231,7 +233,6 @@ if ( get_template() == 'genesis' ) {
 		add_action( 'genesis_before', 'gcwp_title_toggle' );
 	}
 }
-
 
 /***** CALLBACK FUNCTIONS TO DRAW FIELDS -- BY TYPE *****/
 
@@ -534,11 +535,13 @@ function gcwp_main_page_callback() {
 			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ) ?>' />
 
 			<h2 class='nav-tab-wrapper'>
-				<a class='nav-tab nav-tab-active' id='gcwp_basic_setting_section_nav' href='#'><?php _e( 'Main', 'genesis-simple-customizations' ); ?></a><?php do_action( 'gcwp_menu' ); ?>
-				<a class='nav-tab' id='gcwp_addons_section_nav' href='#'><?php _e( 'Extensions', 'genesis-simple-customizations' ); ?></a>
-				<a class='nav-tab' id='gcwp_import_export_setting_section_nav' href='#'><?php _e( 'Import/Export', 'genesis-simple-customizations' ); ?></a>
+				<a class='nav-tab nav-tab-active' id='gcwp_basic_setting_section_nav' href='#'><?php _e( 'Main', 'genesis-simple-customizations' ); ?></a>
+				<!-- <a class='nav-tab' id='gcwp_addons_section_nav' href='#'><?php _e( 'Extensions', 'genesis-simple-customizations' ); ?></a> -->
+				
 				<a class="nav-tab" id="gcwp_page_setting_section_nav" href="#"><?php _e( 'Pages', 'genesis-simple-customizations' ); ?></a>
 				<?php do_action( 'gcwp_menu' ); ?>
+				<a class='nav-tab' id='gcwp_import_export_setting_section_nav' href='#'><?php _e( 'Import/Export', 'genesis-simple-customizations' ); ?></a>
+				
 			</h2>
 			
 			<!-- IMPORT/EXPORT SETTINGS 'PAGE' -->
