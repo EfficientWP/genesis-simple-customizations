@@ -67,7 +67,7 @@ function gcwp_register_settings() {
 			
 	/***** ADD AND REGISTER SETTINGS BOXES AND FIELDS *****/
 	
-	add_settings_section( 'gcwp_basic_setting_section', __( 'Basic Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_basic_setting_section', __( 'General Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
 	add_settings_section( 'gcwp_page_setting_section', __( 'Page Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
 	
 	/***** MAKE SURE OUR ARRAY EXISTS *****/
@@ -535,7 +535,7 @@ function gcwp_main_page_callback() {
 			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ) ?>' />
 
 			<h2 class='nav-tab-wrapper'>
-				<a class='nav-tab nav-tab-active' id='gcwp_basic_setting_section_nav' href='#'><?php _e( 'Main', 'genesis-simple-customizations' ); ?></a>
+				<a class='nav-tab nav-tab-active' id='gcwp_basic_setting_section_nav' href='#'><?php _e( 'General', 'genesis-simple-customizations' ); ?></a>
 				<!-- <a class='nav-tab' id='gcwp_addons_section_nav' href='#'><?php _e( 'Extensions', 'genesis-simple-customizations' ); ?></a> -->
 				
 				<a class="nav-tab" id="gcwp_page_setting_section_nav" href="#"><?php _e( 'Pages', 'genesis-simple-customizations' ); ?></a>
