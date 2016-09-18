@@ -67,8 +67,15 @@ function gcwp_register_settings() {
 			
 	/***** ADD AND REGISTER SETTINGS BOXES AND FIELDS *****/
 	
-	add_settings_section( 'gcwp_basic_setting_section', __( 'Basic Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_basic_setting_section', __( 'General Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
 	add_settings_section( 'gcwp_page_setting_section', __( 'Page Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_nav_setting_section', __( 'Navigation Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_header_setting_section', __( 'Header Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_footer_setting_section', __( 'Footer Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_widget_setting_section', __( 'Widget Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_archive_setting_section', __( 'Blog, Archive and Category Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	add_settings_section( 'gcwp_posts_setting_section', __( 'Post Settings', 'genesis-simple-customizations' ), 'gcwp_section_callback', 'gcwp_main_settings_page' );
+	
 	
 	/***** MAKE SURE OUR ARRAY EXISTS *****/
 	
@@ -76,34 +83,9 @@ function gcwp_register_settings() {
 		add_option( 'egwp_option_array' );
 	}
 
-	/***** SET UP ARRAY THAT HOLDS OPTIONS AND DESCRIPTIONS *****/
-	
-	//$array gcwp_options_array = [ str 'setting', str 'friendlyText', str/fn 'fn_callBack', str 'settingsArea' ]
-	
-	$gcwp_options_array = array(	
-		/***** MAIN TAB *****/
-		array( 'remove_edit_link', __( 'Remove "(Edit)" Link from Frontend', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),
-		array( 'featured_image_pages', __( 'Display Featured Image on Pages', 'genesis-simple-customizations' ), 'gcwp_radio_featured_image_callback', 'gcwp_basic_setting_section' ),
-		array( 'featured_image_posts', __( 'Display Featured Image on Posts', 'genesis-simple-customizations' ), 'gcwp_radio_featured_image_callback', 'gcwp_basic_setting_section' ),
-		array( 'custom_search_box_text', __( 'Custom Search Box Text', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_basic_setting_section', __('Search this website ...', 'genesis-simple-customizations') ),
-		array( 'custom_search_button_text', __( 'Custom Search Button Text', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_basic_setting_section', __('Search', 'genesis-simple-customizations') ),
-		array( 'custom_read_more_text', __( 'Custom "Read More" Text', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_basic_setting_section', __('Read more...', 'genesis-simple-customizations') ),
-		array( 'custom_after_post_text', __( 'Custom After Post Code (shortcodes allowed)', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_basic_setting_section' ),
-		array( 'remove_post_info', __( 'Remove Post Info (above content)', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),
-		array( 'remove_post_meta', __( 'Remove Post Meta (below content)', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),	
-		array( 'remove_footer', __( 'Remove Footer Entirely', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),		
-		array( 'remove_subnav_from_top_of_header', __( 'Remove Secondary Navigation from Top of Header', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),
-		array( 'add_subnav_to_bottom_of_header', __( 'Add Secondary Navigation to Bottom of Header', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),
-		array( 'remove_favicon', __( 'Remove Genesis Favicon', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' ),	
-		array( 'custom_favicon_url', __( 'Custom Favicon (URL)', 'genesis-simple-customizations' ), 'gcwp_media_library_callback', 'gcwp_basic_setting_section' ),	
-		array( 'custom_gravatar_url', __( 'Custom Default Gravatar (URL)', 'genesis-simple-customizations' ), 'gcwp_media_library_callback', 'gcwp_basic_setting_section' ),
-		array( 'custom_google_fonts_text', __( 'Custom Google Fonts (URL)', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_basic_setting_section' ),	
-		array( 'add_featured_image_size_array', __( 'Add Custom Image Sizes', 'genesis-simple-customizations' ), 'gcwp_custom_image_sizes_callback', 'gcwp_basic_setting_section' ),
-	);
-	
 	/***** FILTER SO OTHER EXTENSIONS CAN HOOK IN SETTINGS *****/
 	
-	$gcwp_options_array = apply_filters( 'gcwp_option_filter', $gcwp_options_array );
+	$gcwp_options_array = apply_filters( 'gcwp_option_filter', array() );
 			
 	/***** ADD OPTIONS FOR EACH TYPE IN THE ARRAYS ABOVE
 		$array gcwp_options_array = [ str 'setting', str 'friendlyText', str/fn 'fn_callBack', str 'settingsArea' ]
@@ -121,6 +103,59 @@ function gcwp_register_settings() {
 	register_setting( 'gcwp_main_settings', 'egwp_option_array' );
 }
 add_action( 'admin_init', 'gcwp_register_settings' ); 
+
+/***** ADD OPTIONS *****/
+
+function gcpwp_add_to_option_filter_basic( $array ) {
+	
+	//$array gcwp_options_array = [ str 'setting', str 'friendlyText', str/fn 'fn_callBack', str 'settingsArea' ]
+	
+	/***** MAIN TAB *****/
+	
+	$array[] = array( 'remove_edit_link', __( 'Remove "(Edit)" Link from Frontend', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' );
+	$array[] = array( 'remove_favicon', __( 'Remove Genesis Favicon', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_basic_setting_section' );
+	$array[] = array( 'custom_favicon_url', __( 'Custom Favicon (URL)', 'genesis-simple-customizations' ), 'gcwp_media_library_callback', 'gcwp_basic_setting_section' );
+	$array[] = array( 'custom_gravatar_url', __( 'Custom Default Gravatar (URL)', 'genesis-simple-customizations' ), 'gcwp_media_library_callback', 'gcwp_basic_setting_section' );
+	$array[] = array( 'custom_google_fonts_text', __( 'Custom Google Fonts (URL)', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_basic_setting_section' );
+	$array[] = array( 'add_featured_image_size_array', __( 'Add Custom Image Sizes', 'genesis-simple-customizations' ), 'gcwp_custom_image_sizes_callback', 'gcwp_basic_setting_section' );
+		
+	/***** NAV *****/
+	
+	$array[] = array( 'remove_subnav_from_top_of_header', __( 'Remove Secondary Navigation from Top of Header', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_nav_setting_section' );
+	$array[] = array( 'add_subnav_to_bottom_of_header', __( 'Add Secondary Navigation to Bottom of Header', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_nav_setting_section' );
+
+	/***** HEADER *****/
+
+	$array[] = array( 'remove_header', __( 'Remove Header Entirely', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_header_setting_section' );
+
+	/***** FOOTER *****/
+	
+	$array[] = array( 'remove_footer', __( 'Remove Footer Entirely', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_footer_setting_section' );
+	
+	/***** WIDGET *****/
+	
+	$array[] = array( 'custom_search_box_text', __( 'Custom Search Box Text', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_widget_setting_section', __( 'Search this website ...', 'genesis-simple-customizations' ) );	
+	$array[] = array( 'custom_search_button_text', __( 'Custom Search Button Text', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_widget_setting_section', __( 'Search', 'genesis-simple-customizations' ) );
+
+	/***** BLOG / CATEGORIES / ARCHIVES *****/
+	
+	$array[] =	array( 'custom_read_more_text', __( 'Custom "Read More" Text', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_archive_setting_section', __( 'Read more...', 'genesis-simple-customizations' ) );	
+	
+	/***** POSTS *****/
+	
+	$array[] = array( 'featured_image_posts', __( 'Display Featured Image on Posts', 'genesis-simple-customizations' ), 'gcwp_radio_featured_image_callback', 'gcwp_posts_setting_section' );
+	$array[] = array( 'custom_after_post_text', __( 'Custom After Post Code', 'genesis-simple-customizations' ), 'gcwp_text_box_callback', 'gcwp_posts_setting_section' );	
+	$array[] = array( 'remove_post_info', __( 'Remove Post Info (above content)', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_posts_setting_section' );
+	$array[] = array( 'remove_post_meta', __( 'Remove Post Meta (below content)', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_posts_setting_section' );	
+
+	/***** PAGES *****/
+	
+	$array[] = array( 'remove_titles_from_pages', __( 'Remove Titles from Pages', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_page_setting_section' );	
+	$array[] = array( 'featured_image_pages', __( 'Display Featured Image on Pages', 'genesis-simple-customizations' ), 'gcwp_radio_featured_image_callback', 'gcwp_page_setting_section' );
+	
+	return $array;
+}
+add_filter( 'gcwp_option_filter', 'gcpwp_add_to_option_filter_basic' );
 
 /***** IMPORT/EXPORT SETTING FEATURE *****/
 
@@ -385,9 +420,9 @@ function gcwp_radio_layout_callback( $args ) {
 		$options[ $option_name ] = 'default';
 	}
 	
-	$theme_root = get_theme_root();
+	$theme_root = get_theme_root_uri();
 	$path = $theme_root . '/genesis/lib/admin/images/layouts/';
-	$plugin_dir = plugin_dir_path( __FILE__ );
+	$plugin_dir = plugin_dir_url( __FILE__ );
 	
 	$layouts = array(
 		'default'  => $plugin_dir . 'assets/default.png',
@@ -513,7 +548,8 @@ function gcwp_main_page_callback() {
 	wp_localize_script( 'gcwp_admin_js', 'gcwp_data', $js_data );
 	?>
 	<h1><?php _e( 'Genesis Customizations', 'genesis-simple-customizations' ) ?></h1>
-
+	
+	<?php if ( !is_plugin_active('genesis-customizations-pro/genesis-customizations-pro.php') ) { ?>
 	<div id='gcwp_sidebar'>
 		<h3>Upgrade To Premium</h3>
 
@@ -528,6 +564,8 @@ function gcwp_main_page_callback() {
 			<a href="https://efficientwp.com/" target="_blank" class="button button-primary button-large">Upgrade Now</a>
 		</p> 
 	</div>
+	<?php } ?>
+	
 	<div id='gcwp_main_page'>
 		
 		<form method='post' action='options.php' id='gcwp_main_form' style='display:none;'>
@@ -535,10 +573,17 @@ function gcwp_main_page_callback() {
 			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ) ?>' />
 
 			<h2 class='nav-tab-wrapper'>
-				<a class='nav-tab nav-tab-active' id='gcwp_basic_setting_section_nav' href='#'><?php _e( 'Main', 'genesis-simple-customizations' ); ?></a>
+				<a class='nav-tab nav-tab-active' id='gcwp_basic_setting_section_nav' href='#'><?php _e( 'General', 'genesis-simple-customizations' ); ?></a>
 				<!-- <a class='nav-tab' id='gcwp_addons_section_nav' href='#'><?php _e( 'Extensions', 'genesis-simple-customizations' ); ?></a> -->
 				
+				<a class="nav-tab" id="gcwp_posts_setting_section_nav" href="#"><?php _e( 'Posts', 'genesis-simple-customizations' ); ?></a>
+				<a class="nav-tab" id="gcwp_nav_setting_section_nav" href="#"><?php _e( 'Navigation', 'genesis-simple-customizations' ); ?></a>
+				<a class="nav-tab" id="gcwp_header_setting_section_nav" href="#"><?php _e( 'Header', 'genesis-simple-customizations' ); ?></a>
+				<a class="nav-tab" id="gcwp_archive_setting_section_nav" href="#"><?php _e( 'Blog/Categories/Archives', 'genesis-simple-customizations' ); ?></a>
+				<a class="nav-tab" id="gcwp_widget_setting_section_nav" href="#"><?php _e( 'Widgets', 'genesis-simple-customizations' ); ?></a>
+				<a class="nav-tab" id="gcwp_footer_setting_section_nav" href="#"><?php _e( 'Footer', 'genesis-simple-customizations' ); ?></a>			
 				<a class="nav-tab" id="gcwp_page_setting_section_nav" href="#"><?php _e( 'Pages', 'genesis-simple-customizations' ); ?></a>
+				
 				<?php do_action( 'gcwp_menu' ); ?>
 				<a class='nav-tab' id='gcwp_import_export_setting_section_nav' href='#'><?php _e( 'Import/Export', 'genesis-simple-customizations' ); ?></a>
 				
@@ -1148,14 +1193,6 @@ function gcwp_upgrade_check() {
 		update_option( 'genesis-settings', $genesis_options );
 	}
 }
-/***** ADD PAGE OPTIONS *****/
-
-function gcwp_add_to_option_filter_pages( $array ) {
-	$array[] = array( 'remove_titles_from_pages', __( 'Remove Titles from Pages', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_page_setting_section' );	
-	$array[] = array( 'featured_image_pages', __( 'Display Featured Image on Pages', 'genesis-simple-customizations' ), 'gcwp_radio_featured_image_callback', 'gcwp_page_setting_section' );
-	return $array;
-}
-add_filter( 'gcwp_option_filter', 'gcwp_add_to_option_filter_pages' );
 
 /***** PER PAGE / POST TITLE OVERRIDE *****/
 

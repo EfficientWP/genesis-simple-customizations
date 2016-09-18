@@ -34,7 +34,7 @@ jQuery( document ).ready(function ( $ ) {
 				show_posts_setting_section( current_tab );
 				break;
 			default:
-				var id = current_tab.replace( '_nav', '' );
+				var id = current_tab.slice( 0, -4 );
 				$( '#' + id ).prev().show();
 				$( '#' + id ).next().show();
 		}
@@ -68,7 +68,7 @@ jQuery( document ).ready(function ( $ ) {
 					show_posts_setting_section();
 					break;
 				default:
-				var id = current_tab.replace( '_nav', '' );
+				var id = current_tab.slice( 0, -4 );
 				$( '#' + id ).prev().show('fast');
 				$( '#' + id ).next().show('fast');
 			}
@@ -76,7 +76,7 @@ jQuery( document ).ready(function ( $ ) {
 		});
 	});
 		
-	/***** RESET ALL BUTTON *****/	
+		/***** RESET ALL BUTTON *****/	
 	
 	$( '#gcwp_reset' ).click( function() {
 		if ( confirm( 'Reset All Data?' ) ) {
