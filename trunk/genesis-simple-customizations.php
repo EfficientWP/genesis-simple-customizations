@@ -533,7 +533,6 @@ function gcwp_main_page_callback() {
 	wp_enqueue_script( 'gcwp_admin_js' );
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('media-upload');
-	wp_enqueue_script('thickbox');
 
 	$current_tab = get_user_option( 'gcwp_current_tab', get_current_user_id() );
 
@@ -1237,3 +1236,5 @@ function genesis_simple_customizations_load_textdomain() {
 	load_plugin_textdomain( 'genesis-simple-customizations', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' ); 
 }
 add_action( 'plugins_loaded', 'genesis_simple_customizations_load_textdomain' );
+
+

@@ -296,37 +296,23 @@ jQuery( document ).ready(function ( $ ) {
 	/***** WP MEDIA LIBRARY SUPPORT *****/
 	
 	var formfield;
- 
-    /* user clicks button on custom field, runs below code that opens new window */
-    $('.egwp-upload-button').click(function() {
-        formfield = $(this).prev('input'); //The input field that will hold the uploaded file url
-        tb_show('','media-upload.php?TB_iframe=true');
- 
-        return false;
- 
-    });
-    /*
-    Please keep these line to use this code snipet in your project
-    Developed by oneTarek http://onetarek.com
-    */
-    //adding my custom function with Thick box close function tb_close() .
-    window.old_tb_remove = window.tb_remove;
-    window.tb_remove = function() {
-        window.old_tb_remove(); // calls the tb_remove() of the Thickbox plugin
-        formfield=null;
-    };
- 
-    // user inserts file into post. only run custom if user started process using the above process
-    // window.send_to_editor(html) is how wp would normally handle the received data
- 
-    window.original_send_to_editor = window.send_to_editor;
-    window.send_to_editor = function(html){
-        if (formfield) {
-            fileurl = $('img',html).attr('src');
-            $(formfield).val(fileurl);
-            tb_remove();
-        } else {
-            window.original_send_to_editor(html);
-        }
-    };
+	/* user clicks button on custom field, runs below code that opens new window */
+	$('.egwp-upload-button').click(function() {
+		var formfield = $(this).prev('input'); //The input field that will hold the uploaded file url
+		
+		var image = wp.media({ 
+			title: 'test',
+			multiple: false
+		}).open()
+		.on('select', function(){
+			// This will return the selected image from the Media Uploader, the result is an object
+			var uploaded_image = image.state().get('selection').first()
+
+			var image_url = uploaded_image.toJSON().url
+			// Assign the url value to the input field
+			formfield.val(image_url)
+			
+		})
+	});
+
 });
