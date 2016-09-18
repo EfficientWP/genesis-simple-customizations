@@ -576,13 +576,13 @@ function gcwp_main_page_callback() {
 				<!-- <a class='nav-tab' id='gcwp_addons_section_nav' href='#'><?php _e( 'Extensions', 'genesis-simple-customizations' ); ?></a> -->
 				
 				<a class="nav-tab" id="gcwp_posts_setting_section_nav" href="#"><?php _e( 'Posts', 'genesis-simple-customizations' ); ?></a>
+				<a class="nav-tab" id="gcwp_page_setting_section_nav" href="#"><?php _e( 'Pages', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_nav_setting_section_nav" href="#"><?php _e( 'Navigation', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_header_setting_section_nav" href="#"><?php _e( 'Header', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_archive_setting_section_nav" href="#"><?php _e( 'Blog/Categories/Archives', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_widget_setting_section_nav" href="#"><?php _e( 'Widgets', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_footer_setting_section_nav" href="#"><?php _e( 'Footer', 'genesis-simple-customizations' ); ?></a>			
-				<a class="nav-tab" id="gcwp_page_setting_section_nav" href="#"><?php _e( 'Pages', 'genesis-simple-customizations' ); ?></a>
-				
+								
 				<?php do_action( 'gcwp_menu' ); ?>
 				<a class='nav-tab' id='gcwp_import_export_setting_section_nav' href='#'><?php _e( 'Import/Export', 'genesis-simple-customizations' ); ?></a>
 				
