@@ -221,7 +221,7 @@ jQuery( document ).ready(function ( $ ) {
 		var newHeight = $( '#gcwp_add_image_height' ).val();
 		
 		var name = newWidth + "x" + newHeight;
-		var id = '#gcwp_option_array[add_featured_image_size_array]';
+		var id = '#egwp_option_array[add_featured_image_size_array]';
 		/***** JQUERY DOESN'T LIKE BRACKETS *****/
 		id = id.replace( '[','\\[' );
 		id = id.replace( ']','\\]' );
@@ -238,7 +238,7 @@ jQuery( document ).ready(function ( $ ) {
 	function addImageSizeClickHandler () {
 		$( '.gcwp_delete_image_size_button' ).click( function() {
 			var toRemove = $( this ).prev( '.gcwp_image_size' ).html();
-			var id = '#gcwp_option_array[add_featured_image_size_array]';
+			var id = '#egwp_option_array[add_featured_image_size_array]';
 			/***** JQUERY DOESN'T LIKE BRACKETS *****/
 			id = id.replace( '[','\\[' );
 			id = id.replace( ']','\\]' );
@@ -258,7 +258,7 @@ jQuery( document ).ready(function ( $ ) {
 	/***** LOAD CUSTOM IMAGE SIZES FRONT END DISPLAY *****/
 	
 	function loadCustomImageSizes() {
-		var id = '#gcwp_option_array[add_featured_image_size_array]';
+		var id = '#egwp_option_array[add_featured_image_size_array]';
 		/***** JQUERY DOESN'T LIKE BRACKETS *****/
 		id = id.replace( '[','\\[' );
 		id = id.replace( ']','\\]' );
@@ -299,34 +299,21 @@ jQuery( document ).ready(function ( $ ) {
  
     /* user clicks button on custom field, runs below code that opens new window */
     $('.egwp-upload-button').click(function() {
-        formfield = $(this).prev('input'); //The input field that will hold the uploaded file url
-        tb_show('','media-upload.php?TB_iframe=true');
- 
-        return false;
- 
+        var formfield = $(this).prev('input'); //The input field that will hold the uploaded file url
+		
+		var image = wp.media({ 
+			title: 'test',
+			multiple: false
+		}).open()
+		.on('select', function(){
+			// This will return the selected image from the Media Uploader, the result is an object
+			var uploaded_image = image.state().get('selection').first()
+
+			var image_url = uploaded_image.toJSON().url
+			// Assign the url value to the input field
+			formfield.val(image_url)
+			
+		})
     });
-    /*
-    Please keep these line to use this code snipet in your project
-    Developed by oneTarek http://onetarek.com
-    */
-    //adding my custom function with Thick box close function tb_close() .
-    window.old_tb_remove = window.tb_remove;
-    window.tb_remove = function() {
-        window.old_tb_remove(); // calls the tb_remove() of the Thickbox plugin
-        formfield=null;
-    };
- 
-    // user inserts file into post. only run custom if user started process using the above process
-    // window.send_to_editor(html) is how wp would normally handle the received data
- 
-    window.original_send_to_editor = window.send_to_editor;
-    window.send_to_editor = function(html){
-        if (formfield) {
-            fileurl = $('img',html).attr('src');
-            $(formfield).val(fileurl);
-            tb_remove();
-        } else {
-            window.original_send_to_editor(html);
-        }
-    };
+
 });
