@@ -221,7 +221,7 @@ jQuery( document ).ready(function ( $ ) {
 		var newHeight = $( '#gcwp_add_image_height' ).val();
 		
 		var name = newWidth + "x" + newHeight;
-		var id = '#gcwp_option_array[add_featured_image_size_array]';
+		var id = '#egwp_option_array[add_featured_image_size_array]';
 		/***** JQUERY DOESN'T LIKE BRACKETS *****/
 		id = id.replace( '[','\\[' );
 		id = id.replace( ']','\\]' );
@@ -238,7 +238,7 @@ jQuery( document ).ready(function ( $ ) {
 	function addImageSizeClickHandler () {
 		$( '.gcwp_delete_image_size_button' ).click( function() {
 			var toRemove = $( this ).prev( '.gcwp_image_size' ).html();
-			var id = '#gcwp_option_array[add_featured_image_size_array]';
+			var id = '#egwp_option_array[add_featured_image_size_array]';
 			/***** JQUERY DOESN'T LIKE BRACKETS *****/
 			id = id.replace( '[','\\[' );
 			id = id.replace( ']','\\]' );
@@ -258,7 +258,7 @@ jQuery( document ).ready(function ( $ ) {
 	/***** LOAD CUSTOM IMAGE SIZES FRONT END DISPLAY *****/
 	
 	function loadCustomImageSizes() {
-		var id = '#gcwp_option_array[add_featured_image_size_array]';
+		var id = '#egwp_option_array[add_featured_image_size_array]';
 		/***** JQUERY DOESN'T LIKE BRACKETS *****/
 		id = id.replace( '[','\\[' );
 		id = id.replace( ']','\\]' );
