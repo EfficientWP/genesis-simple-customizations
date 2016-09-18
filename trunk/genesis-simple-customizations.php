@@ -385,9 +385,9 @@ function gcwp_radio_layout_callback( $args ) {
 		$options[ $option_name ] = 'default';
 	}
 	
-	$theme_root = get_theme_root();
+	$theme_root = get_theme_root_uri();
 	$path = $theme_root . '/genesis/lib/admin/images/layouts/';
-	$plugin_dir = plugin_dir_path( __FILE__ );
+	$plugin_dir = plugin_dir_url( __FILE__ );
 	
 	$layouts = array(
 		'default'  => $plugin_dir . 'assets/default.png',
