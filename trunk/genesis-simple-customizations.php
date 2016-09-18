@@ -529,10 +529,10 @@ function gcwp_section_callback( $args ) {
 /***** CREATE MAIN SETTING PAGE *****/
 
 function gcwp_main_page_callback() {
+	wp_enqueue_script('jquery');
+	wp_enqueue_media();
 	wp_enqueue_style( 'gcwp_admin_stylesheet' );
 	wp_enqueue_script( 'gcwp_admin_js' );
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('media-upload');
 
 	$current_tab = get_user_option( 'gcwp_current_tab', get_current_user_id() );
 

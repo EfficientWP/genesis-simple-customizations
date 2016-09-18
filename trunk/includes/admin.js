@@ -296,9 +296,10 @@ jQuery( document ).ready(function ( $ ) {
 	/***** WP MEDIA LIBRARY SUPPORT *****/
 	
 	var formfield;
-	/* user clicks button on custom field, runs below code that opens new window */
-	$('.egwp-upload-button').click(function() {
-		var formfield = $(this).prev('input'); //The input field that will hold the uploaded file url
+ 
+    /* user clicks button on custom field, runs below code that opens new window */
+    $('.egwp-upload-button').click(function() {
+        var formfield = $(this).prev('input'); //The input field that will hold the uploaded file url
 		
 		var image = wp.media({ 
 			title: 'test',
@@ -313,6 +314,6 @@ jQuery( document ).ready(function ( $ ) {
 			formfield.val(image_url)
 			
 		})
-	});
+    });
 
 });
