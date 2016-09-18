@@ -548,7 +548,8 @@ function gcwp_main_page_callback() {
 	wp_localize_script( 'gcwp_admin_js', 'gcwp_data', $js_data );
 	?>
 	<h1><?php _e( 'Genesis Customizations', 'genesis-simple-customizations' ) ?></h1>
-
+	
+	<?php if ( !is_plugin_active('genesis-customizations-pro/genesis-customizations-pro.php') ) { ?>
 	<div id='gcwp_sidebar'>
 		<h3>Upgrade To Premium</h3>
 
@@ -563,6 +564,8 @@ function gcwp_main_page_callback() {
 			<a href="https://efficientwp.com/" target="_blank" class="button button-primary button-large">Upgrade Now</a>
 		</p> 
 	</div>
+	<?php } ?>
+	
 	<div id='gcwp_main_page'>
 		
 		<form method='post' action='options.php' id='gcwp_main_form' style='display:none;'>
