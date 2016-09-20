@@ -24,7 +24,7 @@ function gcwp_activation() {
 			"<p><a class='button button-large' href='" . admin_url( 'plugins.php' ) . "'>" . __( 'Back to plugins page', 'genesis-simple-customizations' ) . '</a></p>'
 		);
 	}	
-	gcwp_upgrade_check();
+	//gcwp_upgrade_check();
 }
 register_activation_hook( __FILE__, 'gcwp_activation' );
 
@@ -123,10 +123,6 @@ function gcpwp_add_to_option_filter_basic( $array ) {
 	
 	$array[] = array( 'remove_subnav_from_top_of_header', __( 'Remove Secondary Navigation from Top of Header', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_nav_setting_section' );
 	$array[] = array( 'add_subnav_to_bottom_of_header', __( 'Add Secondary Navigation to Bottom of Header', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_nav_setting_section' );
-
-	/***** HEADER *****/
-
-	$array[] = array( 'remove_header', __( 'Remove Header Entirely', 'genesis-simple-customizations' ), 'gcwp_checkbox_callback', 'gcwp_header_setting_section' );
 
 	/***** FOOTER *****/
 	
@@ -578,7 +574,6 @@ function gcwp_main_page_callback() {
 				<a class="nav-tab" id="gcwp_posts_setting_section_nav" href="#"><?php _e( 'Posts', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_page_setting_section_nav" href="#"><?php _e( 'Pages', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_nav_setting_section_nav" href="#"><?php _e( 'Navigation', 'genesis-simple-customizations' ); ?></a>
-				<a class="nav-tab" id="gcwp_header_setting_section_nav" href="#"><?php _e( 'Header', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_archive_setting_section_nav" href="#"><?php _e( 'Blog/Categories/Archives', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_widget_setting_section_nav" href="#"><?php _e( 'Widgets', 'genesis-simple-customizations' ); ?></a>
 				<a class="nav-tab" id="gcwp_footer_setting_section_nav" href="#"><?php _e( 'Footer', 'genesis-simple-customizations' ); ?></a>			
