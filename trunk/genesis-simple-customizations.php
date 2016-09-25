@@ -243,13 +243,6 @@ function gcwp_set_current_tab() {
 }
 add_action( 'wp_ajax_gcwp_set_current_tab', 'gcwp_set_current_tab' );
 
-/***** CHANGE THE WP MEDIA UPLOADER'S TEXT "INSERT INTO POST" TO "USE THIS IMAGE" *****/
-
-function gcwp_change_insert_post_text( $safe_text, $text ) {
-	return str_replace( __( 'Insert into Post' ), __( 'Use this image' ), $text );
-}
-add_filter( 'esc_attr', 'gcwp_change_insert_post_text', 10, 2 );
-
 /***** ADD FRONT-END HOOKS *****/
 
 if ( get_template() == 'genesis' ) {
@@ -296,7 +289,7 @@ function gcwp_text_box_callback( $args ) {
 	if ( !isset ( $options[ $option_name ] ) ) {
 		$value = $options[ $option_name ] = '';
 	} else {
-		$value = esc_textarea( $options[ $option_name ] );
+		$value = $options[ $option_name ];
 	}
 	$html = "<input type='text' class='gcwp_text' id='egwp_option_array[$option_name]' name='egwp_option_array[$option_name]' value='$value' placeholder='$placeholder' />"; 
 	//$html .= "<label for='egwp_option_array[$args[0]]'> " . $args[1] . '</label>'; 
@@ -312,7 +305,7 @@ function gcwp_editor_callback( $args ) {
 	if ( !isset ( $options[ $option_name ] ) ) {
 		$value = $options[ $option_name ] = '';
 	} else {
-		$value = esc_textarea( $options[ $option_name ] );
+		$value = $options[ $option_name ];
 	}
 		
 	$editor_id = "$option_name";
@@ -1008,7 +1001,7 @@ function gcwp_custom_read_more_text( $text ) {
 	$options = get_option( 'egwp_option_array' );
 	if ( !empty( $options[ 'custom_read_more_text' ] ) ) {
 		$text = $options[ 'custom_read_more_text' ];
-		return "<a class='more-link' href='" . get_permalink() . "'>" . esc_attr( $text ) . '</a>';
+		return "<a class='more-link' href='" . get_permalink() . "'>" . $text . '</a>';
 	}
 }
 
@@ -1016,7 +1009,7 @@ function gcwp_custom_search_box( $text ) {
 	$options = get_option( 'egwp_option_array' );
 	if ( !empty( $options[ 'custom_search_box_text' ] ) ) {
 		$search_box_text = $options[ 'custom_search_box_text' ];
-		return esc_attr( $search_box_text );
+		return $search_box_text;
 	}
 }
 
@@ -1024,7 +1017,7 @@ function gcwp_custom_search_button( $text ) {
 	$options = get_option( 'egwp_option_array' );
 	if ( !empty( $options[ 'custom_search_button_text' ] ) ) {
 		$search_button_text = $options[ 'custom_search_button_text' ];
-		return esc_attr( $search_button_text );
+		return $search_button_text;
 	}
 }
 
