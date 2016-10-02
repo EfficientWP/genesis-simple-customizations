@@ -28,11 +28,6 @@ function gcwp_activation() {
 }
 register_activation_hook( __FILE__, 'gcwp_activation' );
 
-function gcwp_init() {
-	define( 'gcwp_plugin_active', TRUE );
-}	
-add_action ( 'init', 'gcwp_init' );
-
 /***** DEACTIVATION HOOK *****/
 
 function gcwp_deactivation () {
@@ -100,9 +95,28 @@ function gcwp_register_settings() {
 		add_settings_field( "egwp_option_array[$setting_name]", $friendly_text, $callback_function, 'gcwp_main_settings_page', $setting_heading, $option);
 	}	
 	
-	register_setting( 'gcwp_main_settings', 'egwp_option_array' );
+	register_setting( 'gcwp_main_settings', 'egwp_option_array', 'gcwp_save_callback' );
 }
 add_action( 'admin_init', 'gcwp_register_settings' ); 
+
+/***** PROCESS SAVES *****/
+function gcwp_save_callback( $opt ) {
+	
+	if ( !empty( $_POST['gcwp_import'] ) || !empty( $_POST['gcwp_export'] ) ) {
+		$options = gcwp_process_import_export();
+		if ( !empty ( $options ) && is_array( $options ) ) {
+			$opt = $options;
+			$message = __( 'Settings File Imported Successfully', 'genesis-simple-customizations' );
+			add_settings_error( 'gcwp_import', 'gcwp_import', $message, 'updated' );
+			
+		} else {
+			$message = __( 'Error Importing Settings File', 'genesis-simple-customizations' );
+			add_settings_error( 'gcwp_import', 'gcwp_import', $message, 'error' );
+		}
+	}
+	return $opt;
+	
+}
 
 /***** ADD OPTIONS *****/
 
@@ -156,24 +170,6 @@ add_filter( 'gcwp_option_filter', 'gcpwp_add_to_option_filter_basic' );
 /***** IMPORT/EXPORT SETTING FEATURE *****/
 
 function gcwp_process_import_export() {
-	global $gcwp_errors;
-	global $gcwp_notices;
-	
-	if ( !empty ( $_POST[ 'gcwp_export' ] ) ) {
-		$verify = wp_verify_nonce( $_POST[ 'gcwp_nonce' ], 'gcwp_export' );
-		if ( !$verify ) {
-			$gcwp_errors .= __( 'Could not verify user, try logging in again.', 'genesis-simple-customizations' ) . '\n';
-			return;
-		}
-	} else if ( !empty ( $_POST[ 'gcwp_import' ] ) ) {
-		$verify = wp_verify_nonce( $_POST[ 'gcwp_nonce' ], 'gcwp_import' );
-			if ( !$verify ) {
-			$gcwp_errors .= __( 'Could not verify user, try logging in again.', 'genesis-simple-customizations' ) . '\n';
-			return;
-		}
-	} else {
-		return;
-	}
 	
 	if ( !empty ( $_POST[ 'gcwp_export' ] ) ) {
 		global $gcwp_version;
@@ -191,44 +187,21 @@ function gcwp_process_import_export() {
 	}
 	
 	if ( !empty ( $_POST[ 'gcwp_import' ] ) ) {
+
 		$import_file = $_FILES[ 'import_file' ][ 'tmp_name' ];
 		if( empty( $import_file ) ) {
-			wp_die( __( 'Please upload a file to import' ) );
-		}
-		
+			return false;
+		}		
 		$options = json_decode( file_get_contents( $import_file ), true );
 		
 		if ( !empty( $options[ 'gcwp_version' ] ) ||  !empty( $options[ 'egwp_version' ] ) ) {
-			$success = update_option( 'egwp_option_array', $options );
-			if ( $success ) {
-				$gcwp_notices .= __( 'Imported Settings', 'genesis-simple-customizations') . '\n';
-			} else {
-				$gcwp_errors .= __( 'Failed to Import Settings', 'genesis-simple-customizations') . '\n';
-			}
+			return $options;			
 		} else {
-			$gcwp_errors .= __( 'Invalid file type', 'genesis-simple-customizations') . '\n';
+			return false;
 		}
 	}
 	
 }
-add_action( 'admin_init', 'gcwp_process_import_export' );
-
-/***** REGISTER ADMIN NOTICES FUNCTION *****/
-
-$gcwp_notices = '';
-$gcwp_errors = '';
-function gcwp_admin_notice() {
-	global $gcwp_errors;
-	global $gcwp_notices;
-	if ( !empty( $gcwp_notices ) ) {
-		echo "<div class='updated'><p>$gcwp_notices</p></div>";
-	}
-	if ( !empty( $gcwp_errors ) ) {
-		echo "<div class='error'><p>$gcwp_errors</p></div>";
-	}
-}	
-add_action( 'admin_notices', 'gcwp_admin_notice' ); 
-
 
 /***** AJAX SAVE CURRENT TAB *****/
 
@@ -475,7 +448,6 @@ function gcwp_radio_featured_image_callback( $args ) {
 		} else {
 			$html .= "<label class='egwp-layout-label egwp-layout-label-big'><img src='$img'></label>";
 		}
-								
 		$html .= "<input class='gcwp_radio' type='radio' name='egwp_option_array[$option_name]' id='egwp_option_array[$option_name]' value='$layout' $checked>";
 	}
 	
@@ -556,7 +528,7 @@ function gcwp_main_page_callback() {
 	
 	<div id='gcwp_main_page'>
 		
-		<form method='post' action='options.php' id='gcwp_main_form' style='display:none;'>
+		<form method='post' action='options.php' enctype='multipart/form-data' id='gcwp_main_form' style='display:none;'>
 	
 			<input name='submit' type='submit' id='submit' class='button-primary' value='<?php _e( 'Save Changes', 'genesis-simple-customizations' ) ?>' />
 
@@ -583,23 +555,17 @@ function gcwp_main_page_callback() {
 			<table class='form-table' id='gcwp_import_export_setting_table'>
 				<tr>
 					<td>
-						<form method='post' enctype='multipart/form-data'>
-							<input type='file' name='import_file' id='gcwp_import_setting_file'/>
-							<br>
-							<label for='import_file'><i><?php _e( 'Select a Genesis Customizations settings file and click the Import button.', 'genesis-simple-customizations' ); ?></i>
-							<br>
-							<br>
-							<input name='gcwp_import' type='submit' id='gcwp_import' class='button-secondary' value='<?php _e( 'Import', 'genesis-simple-customizations' ); ?>' disabled />
-							<?php wp_nonce_field( 'gcwp_import', 'gcwp_nonce' ); ?>
-						</form>
+						<input type='file' name='import_file' id='gcwp_import_setting_file'/>
+						<br>
+						<label for='import_file'><i><?php _e( 'Select a Genesis Customizations settings file and click the Import button.', 'genesis-simple-customizations' ); ?></i>
+						<br>
+						<br>
+						<input name='gcwp_import' type='submit' id='gcwp_import' class='button-secondary' value='<?php _e( 'Import', 'genesis-simple-customizations' ); ?>' disabled />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						<form method='post'>
-							<input name='gcwp_export' type='submit' id='gcwp_export' class='button-secondary' value='<?php _e( 'Export', 'genesis-simple-customizations' ); ?>' />
-							<?php wp_nonce_field( 'gcwp_export', 'gcwp_nonce' ); ?>
-						</form>
+						<input name='gcwp_export' type='submit' id='gcwp_export' class='button-secondary' value='<?php _e( 'Export', 'genesis-simple-customizations' ); ?>' />
 					</td>
 				</tr>
 			</table>
