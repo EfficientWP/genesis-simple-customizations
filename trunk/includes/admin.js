@@ -88,6 +88,7 @@ jQuery( document ).ready(function ( $ ) {
 			$( '.genesis-layout-selector' ).find( ':first' ).addClass( 'egwp-layout-label-selected' );
 			$( 'option:selected' ).removeAttr( 'selected' );
 			$( '.genesis-layout-selector' ).find( ':first' ).next().prop( 'checked', true );
+			tinyMCE.activeEditor.setContent('');
 			gcwp_set_onoff_colors();
 		} else {
 		
