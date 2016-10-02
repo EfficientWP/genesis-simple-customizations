@@ -82,6 +82,7 @@ jQuery( document ).ready(function ( $ ) {
 		if ( confirm( 'Reset All Data?' ) ) {
 			$( 'input:checkbox' ).prop( 'checked', false );
 			$( 'input:text' ).prop( 'value', '' );
+			$( '.gcwp_number' ).val('');
 			$( '.egwp-layout-label' ).removeClass( 'egwp-layout-label-selected' );
 			$( '.egwp-layout-label' ).next().prop( 'checked', false );
 			$( '.genesis-layout-selector' ).find( ':first' ).addClass( 'egwp-layout-label-selected' );
